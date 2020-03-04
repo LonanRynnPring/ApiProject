@@ -1,0 +1,333 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApprenticeWebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.AccountsLogic">
+            <summary>
+            The accounts logic implementation.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.RetrieveAccounts">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.RetrieveAccount(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.UpdateAccount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AccountRequestDto})">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.DeleteAccount(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.GetAccounts">
+            <summary>
+            Temporary method for returning dummy data.
+            </summary>
+            <returns>A list of dummy data accounts.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.ExampleLogic">
+            <summary>
+            The example logic implementation.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.CreateExample(ApprenticeWebAPI.Models.Dto.ExampleRequestDto)">
+            <inheritdoc />
+        </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic">
+            <summary>
+            The accounts logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+            <summary>
+            Method for creating an account.
+            </summary>
+            <param name="accountRequestDto">The account request Dto.</param>
+            <returns>An account response Dto.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.RetrieveAccounts">
+            <summary>
+            Method for retrieving all accounts.
+            </summary>
+            <returns>A collection of accounts.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.RetrieveAccount(System.Int32)">
+            <summary>
+            Method for retrieving a single account.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve.</param>
+            <returns>The account.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.UpdateAccount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AccountRequestDto})">
+            <summary>
+            Method for updating an account.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve.</param>
+            <param name="patchRequest">The account patch request.</param>
+            <returns>The updated account.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.DeleteAccount(System.Int32)">
+            <summary>
+            Method for deleting an account.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve.</param>
+            <returns>The status of the deletion of the account.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic">
+            <summary>
+            The example logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic.CreateExample(ApprenticeWebAPI.Models.Dto.ExampleRequestDto)">
+            <summary>
+            Method for creating an example
+            </summary>
+            <param name="exampleRequestDto">The example request Dto.</param>
+            <returns>The example response Dto.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.Controllers.AccountsController">
+            <summary>
+            Account API Controller
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Controllers.AccountsController._accountsLogic">
+            <summary>
+            Accounts logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AccountsController.#ctor(ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="accountsLogic">The account logic.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AccountsController.CreateAccount(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+            <summary>
+            Endpoint for creating an account.
+            </summary>
+            <param name="accountRequestDto">The account creation request body.</param>
+            <returns>The account creation response.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AccountsController.RetrieveAccounts">
+            <summary>
+            Endpoint for retrieving accounts.
+            </summary>
+            <returns>A collection of accounts.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AccountsController.RetrieveAccount(System.Int32)">
+            <summary>
+            Endpoint for retrieving an account.
+            </summary>
+            <param name="accountId">The Id of the account to retrieve.</param>
+            <returns>The account.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AccountsController.UpdateAccount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AccountRequestDto})">
+            <summary>
+            Endpoint for updating an account.
+            </summary>
+            <param name="accountId">The Id of the account to retrieve.</param>
+            <param name="patchRequest">The patch request body.</param>
+            <returns>The updated account.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AccountsController.DeleteAccount(System.Int32)">
+            <summary>
+            Endpoint for deleting an account.
+            </summary>
+            <param name="accountId">The Id of the account to retrieve.</param>
+            <returns>The status of the account deletion.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.Controllers.ExamplesController">
+            <summary>
+            Example API Controller
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Controllers.ExamplesController._exampleLogic">
+            <summary>
+            Example logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.ExamplesController.#ctor(ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="exampleLogic">The example logic.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.ExamplesController.CreateExample(ApprenticeWebAPI.Models.Dto.ExampleRequestDto)">
+            <summary>
+            Endpoint for creating an example.
+            </summary>
+            <param name="exampleRequestDto">The example creation request body.</param>
+            <returns>The example creation response.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.AccountRequestDto">
+            <summary>
+            The account request Dto
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountRequestDto.FirstName">
+            <summary>
+            The first name.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountRequestDto.Surname">
+            <summary>
+            The surname.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.AccountResponseDto">
+            <summary>
+            The account response Dto.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.AccountId">
+            <summary>
+            The account Id.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.FirstName">
+            <summary>
+            The first name.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.Surname">
+            <summary>
+            The surname.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.ExampleRequestDto">
+            <summary>
+            The example request Dto
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.ExampleRequestDto.Value">
+            <summary>
+            The example value.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.ExampleResponseDto">
+            <summary>
+            The example response Dto
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.ExampleResponseDto.ExampleId">
+            <summary>
+            The example Id.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.ExampleResponseDto.Value">
+            <summary>
+            The example value.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Entity.PatchOperations">
+            <summary>
+            The enum for available PATCH operations.
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Models.Entity.PatchOperations.Add">
+            <summary>
+            The add operation
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Models.Entity.PatchOperations.Replace">
+            <summary>
+            The replace operation
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Models.Entity.PatchOperations.Remove">
+            <summary>
+            The remove operation
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Entity.PatchRequest">
+            <summary>
+            Copy of MPP Core Patch Request object
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.PatchRequest.Action">
+            <summary>
+            The action of the payment detail parameter change
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.PatchRequest.ParameterName">
+            <summary>
+            The name of the parameter being changed
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.PatchRequest.Value">
+            <summary>
+            The new payment detail parameter value
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.PatchRequest.InvalidAction">
+            <summary>
+            If the action is not set then this holds the original action type
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Program">
+            <summary>
+            Entry point class.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Program.Main(System.String[])">
+            <summary>
+            Entry point method.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:ApprenticeWebAPI.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Method for creating web host builder.
+            </summary>
+            <param name="args">Arguements.</param>
+            <returns>The web host builder.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.Startup">
+            <summary>
+            The startup class.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Start up constructor
+            </summary>
+            <param name="configuration">configuration interface</param>
+        </member>
+        <member name="P:ApprenticeWebAPI.Startup.Configuration">
+            <summary>
+            Configuration interface
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services">IServiceCollection Interface</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+        <member name="T:ApprenticeWebAPI.Utility.PatchRequestConverter">
+            <summary>
+            Class for converting PATCH requests.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.PatchRequestConverter.GeneratePatchRequestList(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AccountRequestDto})">
+            <summary>
+            Method for generating a list of patch requests from a PATCH document.
+            </summary>
+            <param name="patchRequest">The original PATCH document request.</param>
+            <returns>A list of PATCH requests.</returns>
+        </member>
+    </members>
+</doc>
