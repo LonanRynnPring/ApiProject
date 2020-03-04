@@ -1,5 +1,9 @@
 ﻿using ApprenticeWebAPI.ApplicationLayer;
 using ApprenticeWebAPI.ApplicationLayer.Interfaces;
+using ApprenticeWebAPI.DataAccessLayer;
+using ApprenticeWebAPI.DataAccessLayer.Interfaces;
+using ApprenticeWebAPI.Utility;
+using ApprenticeWebAPI.Utility.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -65,8 +69,15 @@ namespace ApprenticeWebAPI
                 setupAction.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
             });
 
+            #region Application Layer
             services.AddScoped<IAccountsLogic, AccountsLogic>();
             services.AddScoped<IExampleLogic, ExampleLogic>();
+            #endregion Application Layer
+
+            #region Data Access Layer
+            services.AddScoped<IDataHelper, DataHelper>();
+            services.AddScoped<IExamplesRepository, ExamplesRepository>();
+            #endregion Data Access Layer
         }
 
         /// <summary>

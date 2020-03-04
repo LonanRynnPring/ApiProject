@@ -35,6 +35,17 @@
             The example logic implementation.
             </summary>
         </member>
+        <member name="F:ApprenticeWebAPI.ApplicationLayer.ExampleLogic._examplesRepository">
+            <summary>
+            Example repository interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.#ctor(ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="examplesRepository">The example repository.</param>
+        </member>
         <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.CreateExample(ApprenticeWebAPI.Models.Dto.ExampleRequestDto)">
             <inheritdoc />
         </member>
@@ -163,6 +174,43 @@
             </summary>
             <param name="exampleRequestDto">The example creation request body.</param>
             <returns>The example creation response.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository">
+            <summary>
+            Class for the example repository implementation.
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository._dataHelper">
+            <summary>
+            IDataHelper interface.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.Configuration">
+            <summary>
+            The configuration
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.#ctor(ApprenticeWebAPI.Utility.Interfaces.IDataHelper,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Contructor.
+            </summary>
+            <param name="dataHelper">The data helper.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.CreateExample(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository">
+            <summary>
+            Interface for the examples repository.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository.CreateExample(System.String)">
+            <summary>
+            Method for creating an example.
+            </summary>
+            <param name="value">The example value.</param>
+            <returns>The Id of the new example.</returns>
         </member>
         <member name="T:ApprenticeWebAPI.Models.Dto.AccountRequestDto">
             <summary>
@@ -316,6 +364,74 @@
             <param name="app"></param>
             <param name="env"></param>
             <param name="loggerFactory"></param>
+        </member>
+        <member name="T:ApprenticeWebAPI.Utility.DataHelper">
+            <summary>
+            Copy of the MPP Core class for the data helper implementation.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.Execute(System.Action{System.Data.SqlClient.SqlCommand}[])">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.Execute(System.Action{System.Object},System.Action{System.Data.SqlClient.SqlCommand}[])">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.BindDb(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.BindParameters(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.StoredProc(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.ParseParameters(System.Data.SqlClient.SqlCommand,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Method for parsing stored procedure parameters.
+            </summary>
+            <param name="cmd">The SQL command.</param>
+            <param name="parameters">The dictionary parameters.</param>
+        </member>
+        <member name="T:ApprenticeWebAPI.Utility.Interfaces.IDataHelper">
+            <summary>
+            Copy of the MPP Core data helper.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.Execute(System.Action{System.Data.SqlClient.SqlCommand}[])">
+            <summary>
+            Executes the specified command sequence. 
+            Call this one when you need the affected row count
+            </summary>
+            <param name="commandSequence">The command sequence.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.Execute(System.Action{System.Object},System.Action{System.Data.SqlClient.SqlCommand}[])">
+            <summary>
+            Executes the specified command sequence. 
+            Call this one when you need the affected row count
+            </summary>
+            <param name="returnValue">An action that is called with the return value from the executed T-SQL.</param>
+            <param name="commandSequence">The command sequence.</param>
+            <returns>An integer which is the result of the execution.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.BindDb(System.String)">
+            <summary>
+            This property defines an action that binds an arbitrary database.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.BindParameters(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            This method defines an action that binds parameters as a dictionary.
+            </summary>
+            <param name="parameterDictionary">The dictionary of parameters to bind</param>
+            <returns>A SqlCommand action.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.StoredProc(System.String)">
+            <summary>
+            This method creates a SQL Action that binds a stored procedure to a SQL Command.
+            </summary>
+            <param name="storedProcedureName">The stored procedure to bind.</param>
+            <returns>A SqlCommand action.</returns>
         </member>
         <member name="T:ApprenticeWebAPI.Utility.PatchRequestConverter">
             <summary>

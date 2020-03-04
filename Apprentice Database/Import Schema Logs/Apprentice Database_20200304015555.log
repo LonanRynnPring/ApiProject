@@ -1,0 +1,71 @@
+04/03/2020 13:55:55	This log contains information about the import schema operation into project 'Apprentice Database' on computer 'MPP00164' by user 'pmchugh'.
+04/03/2020 13:55:55	Import of database schema has started.
+04/03/2020 13:55:56	Gathering database options
+04/03/2020 13:55:56	Gathering users
+04/03/2020 13:55:56	Gathering roles
+04/03/2020 13:55:56	Gathering application roles
+04/03/2020 13:55:56	Gathering role memberships
+04/03/2020 13:55:56	Gathering filegroups
+04/03/2020 13:55:56	Gathering full-text catalogs
+04/03/2020 13:55:56	Gathering assemblies
+04/03/2020 13:55:56	Gathering certificates
+04/03/2020 13:55:56	Gathering asymmetric keys
+04/03/2020 13:55:56	Gathering symmetric keys
+04/03/2020 13:55:56	Gathering encrypted symmetric keys
+04/03/2020 13:55:56	Gathering schemas
+04/03/2020 13:55:56	Gathering XML schema collections
+04/03/2020 13:55:56	Gathering user-defined data types
+04/03/2020 13:55:56	Gathering user-defined types
+04/03/2020 13:55:56	Gathering table types
+04/03/2020 13:55:56	Gathering unique keys for table types
+04/03/2020 13:55:56	Gathering primary keys for table types
+04/03/2020 13:55:56	Gathering check constraints for table types
+04/03/2020 13:55:56	Gathering default constraints for table types
+04/03/2020 13:55:56	Gathering partition functions
+04/03/2020 13:55:56	Gathering partition schemes
+04/03/2020 13:55:56	Gathering functions
+04/03/2020 13:55:56	Gathering encrypted functions
+04/03/2020 13:55:56	Gathering aggregates
+04/03/2020 13:55:56	Gathering procedures
+04/03/2020 13:55:56	Gathering encrypted procedures
+04/03/2020 13:55:56	Gathering tables
+04/03/2020 13:55:56	Gathering primary keys
+04/03/2020 13:55:56	Gathering unique constraints
+04/03/2020 13:55:56	Gathering foreign keys
+04/03/2020 13:55:56	Gathering default constraints
+04/03/2020 13:55:56	Gathering check constraints
+04/03/2020 13:55:56	Gathering views
+04/03/2020 13:55:56	Gathering encrypted views
+04/03/2020 13:55:56	Gathering indexes
+04/03/2020 13:55:56	Gathering statistics
+04/03/2020 13:55:56	Gathering full-text index stoplists
+04/03/2020 13:55:56	Gathering full-text indexes
+04/03/2020 13:55:56	Gathering spatial indexes
+04/03/2020 13:55:56	Gathering XML indexes
+04/03/2020 13:55:56	Gathering encrypted triggers
+04/03/2020 13:55:56	Gathering triggers
+04/03/2020 13:55:56	Gathering encrypted and clr ddl triggers
+04/03/2020 13:55:56	Gathering ddl triggers
+04/03/2020 13:55:56	Gathering synonyms
+04/03/2020 13:55:56	Gathering defaults
+04/03/2020 13:55:56	Gathering data constraint uddt bindings
+04/03/2020 13:55:56	Gathering rules
+04/03/2020 13:55:56	Gathering data constraint uddt bindings
+04/03/2020 13:55:56	Gathering message types
+04/03/2020 13:55:56	Gathering queues
+04/03/2020 13:55:56	Gathering contracts
+04/03/2020 13:55:56	Gathering services
+04/03/2020 13:55:56	Gathering event notifications
+04/03/2020 13:55:56	Gathering remote service bindings
+04/03/2020 13:55:56	Gathering broker priorities
+04/03/2020 13:55:56	Gathering signatures
+04/03/2020 13:55:56	Gathering data compression options
+04/03/2020 13:55:56	Gathering extended properties
+04/03/2020 13:55:56	Gathering credentials
+04/03/2020 13:55:56	Gathering logins
+04/03/2020 13:55:56	Gathering server audits
+04/03/2020 13:55:56	Scanning project for duplicate elements
+04/03/2020 13:55:56	Finished duplicate element processing
+04/03/2020 13:55:56	Finished importing database.
+04/03/2020 13:55:56	A summary of the import was saved to the following location: C:\projects\ApprenticeWebAPI\Apprentice Database\Import Schema Logs\Apprentice Database_20200304015555.log
+04/03/2020 13:55:56	Click Finish to continue...
