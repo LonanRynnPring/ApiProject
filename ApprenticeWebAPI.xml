@@ -30,6 +30,58 @@
             </summary>
             <returns>A list of dummy data accounts.</returns>
         </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.AddressesLogic">
+            <summary>
+            The address logic implementation.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AddressesLogic.CreateAddress(System.Int32,ApprenticeWebAPI.Models.Dto.AddressRequestDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AddressesLogic.RetrieveAccountAddresses(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AddressesLogic.RetrieveAddressById(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AddressesLogic.UpdateAddress(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AddressRequestDto})">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AddressesLogic.DeleteAddress(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AddressesLogic.GetAddresses">
+            <summary>
+            Temporary method for returning dummy data.
+            </summary>
+            <returns>A list of dummy data addresses.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.CardsLogic">
+            <summary>
+            The card logic implementation.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.CardsLogic.CreateCardForAccount(System.Int32,ApprenticeWebAPI.Models.Dto.CardRequestDto)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.CardsLogic.RetrieveAccountCards(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.CardsLogic.RetrieveAccountCardById(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.CardsLogic.UpdateCard(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.CardRequestDto})">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.CardsLogic.DeleteCard(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.CardsLogic.GetCards">
+            <summary>
+            Temporary method for returning dummy data.
+            </summary>
+            <returns>A list of dummy data cards.</returns>
+        </member>
         <member name="T:ApprenticeWebAPI.ApplicationLayer.ExampleLogic">
             <summary>
             The example logic implementation.
@@ -88,6 +140,96 @@
             </summary>
             <param name="accountId">The Id of the account we want to retrieve.</param>
             <returns>The status of the deletion of the account.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic">
+            <summary>
+            The address logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic.CreateAddress(System.Int32,ApprenticeWebAPI.Models.Dto.AddressRequestDto)">
+            <summary>
+            Method for creating an address for an account.
+            </summary>
+            <param name="accountId">The account Id.</param>
+            <param name="addressRequestDto">The address request Dto.</param>
+            <returns>An address response Dto.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic.RetrieveAccountAddresses(System.Int32)">
+            <summary>
+            Method for retrieving account addresses.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve addresses for.</param>
+            <returns>The account's addresses.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic.RetrieveAddressById(System.Int32,System.Int32)">
+            <summary>
+            Method for retrieving an address.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve address for.</param>
+            <param name="addressId">The Id of the address to retrieve.</param>
+            <returns>The address.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic.UpdateAddress(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AddressRequestDto})">
+            <summary>
+            Method for updating an address.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="addressId">The Id of the address to update.</param>
+            <param name="patchRequest">The address patch request.</param>
+            <returns>The updated address.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic.DeleteAddress(System.Int32,System.Int32)">
+            <summary>
+            Method for deleting an address.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="addressId">The Id of the address to delete.</param>
+            <returns>The status of the deletion of the address.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic">
+            <summary>
+            The card logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic.CreateCardForAccount(System.Int32,ApprenticeWebAPI.Models.Dto.CardRequestDto)">
+            <summary>
+            Method for creating a card for an account.
+            </summary>
+            <param name="accountId">The account Id.</param>
+            <param name="cardRequestDto">The card creation request Dto.</param>
+            <returns>The card creation response Dto.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic.RetrieveAccountCards(System.Int32)">
+            <summary>
+            Method for retrieving account cards.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve cards for.</param>
+            <returns>The account's cards.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic.RetrieveAccountCardById(System.Int32,System.Int32)">
+            <summary>
+            Method for retrieving a card.
+            </summary>
+            <param name="accountId">The Id of the account we want to retrieve card for.</param>
+            <param name="cardId">The Id of the card to retrieve.</param>
+            <returns>The card.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic.UpdateCard(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.CardRequestDto})">
+            <summary>
+            Method for updating a card.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="cardId">The Id of the card to update.</param>
+            <param name="patchRequest">The card patch request.</param>
+            <returns>The updated card.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic.DeleteCard(System.Int32,System.Int32)">
+            <summary>
+            Method for deleting a card.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="cardId">The Id of the card to delete.</param>
+            <returns>The status of the deletion of the card.</returns>
         </member>
         <member name="T:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic">
             <summary>
@@ -151,6 +293,118 @@
             </summary>
             <param name="accountId">The Id of the account to retrieve.</param>
             <returns>The status of the account deletion.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.Controllers.AddressesController">
+            <summary>
+            Address API Controller
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Controllers.AddressesController._addressLogic">
+            <summary>
+            Address logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AddressesController.#ctor(ApprenticeWebAPI.ApplicationLayer.Interfaces.IAddressesLogic)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="addressLogic">The address logic.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AddressesController.CreateAddress(System.Int32,ApprenticeWebAPI.Models.Dto.AddressRequestDto)">
+            <summary>
+            Endpoint for creating an address for an account.
+            </summary>
+            <param name="accountId">The account Id.</param>
+            <param name="addressRequestDto">The address creation request body.</param>
+            <returns>The address creation response.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AddressesController.RetrieveAccountAddresses(System.Int32)">
+            <summary>
+            Endpoint for retrieving an account's addresses.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <returns>The account's addresses.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AddressesController.RetrieveAccountAddressById(System.Int32,System.Int32)">
+            <summary>
+            Endpoint for retrieving a address belonging to an account.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="addressId">The Id of the address.</param>
+            <returns>The account's address.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AddressesController.UpdateAccount(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AddressRequestDto})">
+            <summary>
+            Endpoint for updating an address.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="addressId">The Id of the address to update.</param>
+            <param name="patchRequest">The patch request body.</param>
+            <returns>The updated address.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.AddressesController.DeleteAddress(System.Int32,System.Int32)">
+            <summary>
+            Endpoint for deleting an address.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="addressId">The Id of the address to delete.</param>
+            <returns>The status of the address deletion.</returns>
+        </member>
+        <member name="T:ApprenticeWebAPI.Controllers.CardsController">
+            <summary>
+            Cards API Controller
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Controllers.CardsController._cardLogic">
+            <summary>
+            Card logic interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.CardsController.#ctor(ApprenticeWebAPI.ApplicationLayer.Interfaces.ICardsLogic)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="cardLogic">The card logic.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.CardsController.CreateAddress(System.Int32,ApprenticeWebAPI.Models.Dto.CardRequestDto)">
+            <summary>
+            Endpoint for creating a card for an account.
+            </summary>
+            <param name="accountId">The account Id.</param>
+            <param name="cardRequestDto">The card creation request body.</param>
+            <returns>The card creation response.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.CardsController.RetrieveAccountCards(System.Int32)">
+            <summary>
+            Endpoint for retrieving an account's cards.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <returns>The account's cards.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.CardsController.RetrieveAccountAddressById(System.Int32,System.Int32)">
+            <summary>
+            Endpoint for retrieving a card belonging to an account.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="cardId">The Id of the card.</param>
+            <returns>The account's card.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.CardsController.UpdateAccount(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.CardRequestDto})">
+            <summary>
+            Endpoint for updating a card.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="cardId">The Id of the card to update.</param>
+            <param name="patchRequest">The patch request body.</param>
+            <returns>The updated card.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.CardsController.DeleteAddress(System.Int32,System.Int32)">
+            <summary>
+            Endpoint for deleting a card.
+            </summary>
+            <param name="accountId">The Id of the account.</param>
+            <param name="cardId">The Id of the card to delete.</param>
+            <returns>The status of the card deletion.</returns>
         </member>
         <member name="T:ApprenticeWebAPI.Controllers.ExamplesController">
             <summary>
@@ -247,6 +501,116 @@
             The surname.
             </summary>
         </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.AddressRequestDto">
+            <summary>
+            The address request Dto.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressRequestDto.HouseNumber">
+            <summary>
+            The house number.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressRequestDto.Street">
+            <summary>
+            The street.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressRequestDto.TownCity">
+            <summary>
+            The town/city.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressRequestDto.County">
+            <summary>
+            The county.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressRequestDto.PostCode">
+            <summary>
+            The postcode.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.AddressResponseDto">
+            <summary>
+            The address response Dto.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.AddressId">
+            <summary>
+            The address Id
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.AccountId">
+            <summary>
+            The account Id
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.HouseNumber">
+            <summary>
+            The house number.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.Street">
+            <summary>
+            The street.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.TownCity">
+            <summary>
+            The town/city.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.County">
+            <summary>
+            The county.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AddressResponseDto.PostCode">
+            <summary>
+            The postcode.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.CardRequestDto">
+            <summary>
+            The card requrest Dto.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.CardRequestDto.CardNumber">
+            <summary>
+            The card number.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.CardRequestDto.Bank">
+            <summary>
+            The bank.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Dto.CardResponseDto">
+            <summary>
+            The card response Dto.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.CardResponseDto.CardId">
+            <summary>
+            The card Id.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.CardResponseDto.AccountId">
+            <summary>
+            The account Id.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.CardResponseDto.CardNumber">
+            <summary>
+            The card number.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.CardResponseDto.Bank">
+            <summary>
+            The bank.
+            </summary>
+        </member>
         <member name="T:ApprenticeWebAPI.Models.Dto.ExampleRequestDto">
             <summary>
             The example request Dto
@@ -270,26 +634,6 @@
         <member name="P:ApprenticeWebAPI.Models.Dto.ExampleResponseDto.Value">
             <summary>
             The example value.
-            </summary>
-        </member>
-        <member name="T:ApprenticeWebAPI.Models.Entity.PatchOperations">
-            <summary>
-            The enum for available PATCH operations.
-            </summary>
-        </member>
-        <member name="F:ApprenticeWebAPI.Models.Entity.PatchOperations.Add">
-            <summary>
-            The add operation
-            </summary>
-        </member>
-        <member name="F:ApprenticeWebAPI.Models.Entity.PatchOperations.Replace">
-            <summary>
-            The replace operation
-            </summary>
-        </member>
-        <member name="F:ApprenticeWebAPI.Models.Entity.PatchOperations.Remove">
-            <summary>
-            The remove operation
             </summary>
         </member>
         <member name="T:ApprenticeWebAPI.Models.Entity.PatchRequest">
@@ -365,6 +709,21 @@
             <param name="env"></param>
             <param name="loggerFactory"></param>
         </member>
+        <member name="T:ApprenticeWebAPI.Utility.Banks">
+            <summary>
+            The enum for available payment card banks.
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Utility.Banks.Barclays">
+            <summary>
+            Barclays
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Utility.Banks.HSBC">
+            <summary>
+            HSBC
+            </summary>
+        </member>
         <member name="T:ApprenticeWebAPI.Utility.DataHelper">
             <summary>
             Copy of the MPP Core class for the data helper implementation.
@@ -433,12 +792,32 @@
             <param name="storedProcedureName">The stored procedure to bind.</param>
             <returns>A SqlCommand action.</returns>
         </member>
-        <member name="T:ApprenticeWebAPI.Utility.PatchRequestConverter">
+        <member name="T:ApprenticeWebAPI.Utility.PatchOperations">
+            <summary>
+            The enum for available PATCH operations.
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Utility.PatchOperations.Add">
+            <summary>
+            The add operation
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Utility.PatchOperations.Replace">
+            <summary>
+            The replace operation
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.Utility.PatchOperations.Remove">
+            <summary>
+            The remove operation
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Utility.PatchRequestConverter`1">
             <summary>
             Class for converting PATCH requests.
             </summary>
         </member>
-        <member name="M:ApprenticeWebAPI.Utility.PatchRequestConverter.GeneratePatchRequestList(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.AccountRequestDto})">
+        <member name="M:ApprenticeWebAPI.Utility.PatchRequestConverter`1.GeneratePatchRequestList(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{`0})">
             <summary>
             Method for generating a list of patch requests from a PATCH document.
             </summary>

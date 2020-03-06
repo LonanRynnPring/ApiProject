@@ -72,6 +72,8 @@ namespace ApprenticeWebAPI
             #region Application Layer
             services.AddScoped<IAccountsLogic, AccountsLogic>();
             services.AddScoped<IExampleLogic, ExampleLogic>();
+            services.AddScoped<IAddressesLogic, AddressesLogic>();
+            services.AddScoped<ICardsLogic, CardsLogic>();
             #endregion Application Layer
 
             #region Data Access Layer

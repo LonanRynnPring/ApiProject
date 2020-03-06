@@ -1,4 +1,4 @@
-﻿namespace ApprenticeWebAPI.Models.Entity
+﻿namespace ApprenticeWebAPI.Utility
 {
     /// <summary>
     /// The enum for available PATCH operations.

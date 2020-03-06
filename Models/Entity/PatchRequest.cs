@@ -1,4 +1,6 @@
-﻿namespace ApprenticeWebAPI.Models.Entity
+﻿using ApprenticeWebAPI.Utility;
+
+namespace ApprenticeWebAPI.Models.Entity
 {
     /// <summary>
     /// Copy of MPP Core Patch Request object

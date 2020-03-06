@@ -30,7 +30,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
 
             var response = new AccountResponseDto
             {
-                AccountId = 2,
+                AccountId = 1,
                 FirstName = accountRequestDto.FirstName,
                 Surname = accountRequestDto.Surname
             };
@@ -80,7 +80,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
 
             if (account != default(AccountResponseDto))
             {
-                var patchOperations = PatchRequestConverter.GeneratePatchRequestList(patchRequest);
+                var patchOperations = PatchRequestConverter<AccountRequestDto>.GeneratePatchRequestList(patchRequest);
 
                 foreach (PatchRequest patchOperation in patchOperations)
                 {

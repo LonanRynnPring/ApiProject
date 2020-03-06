@@ -1,24 +1,20 @@
-﻿using ApprenticeWebAPI.Models.Dto;
-using ApprenticeWebAPI.Models.Entity;
+﻿using ApprenticeWebAPI.Models.Entity;
 using Microsoft.AspNetCore.JsonPatch;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApprenticeWebAPI.Utility
 {
     /// <summary>
     /// Class for converting PATCH requests.
     /// </summary>
-    public static class PatchRequestConverter
+    public static class PatchRequestConverter<T> where T : class
     {
         /// <summary>
         /// Method for generating a list of patch requests from a PATCH document.
         /// </summary>
         /// <param name="patchRequest">The original PATCH document request.</param>
         /// <returns>A list of PATCH requests.</returns>
-        public static List<PatchRequest> GeneratePatchRequestList(JsonPatchDocument<AccountRequestDto> patchRequest)
+        public static List<PatchRequest> GeneratePatchRequestList(JsonPatchDocument<T> patchRequest)
         {
             var list = new List<PatchRequest>();
 
