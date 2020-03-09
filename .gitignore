@@ -3,3 +3,16 @@
 [Rr]elease*/
 [Pp]ackages*/
 .vs/*
+*.user
+*.cache
+*.suo
+*.dbmdl
+*jfm
+*.ini
+*_BACKUP_*.*
+*_BASE_*.*
+*_LOCAL_*.*
+*_REMOTE_*.*
+*.orig
+*.slm
+*/obj/
