@@ -6,14 +6,11 @@ using ApprenticeWebAPI.Utility;
 using ApprenticeWebAPI.Utility.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 
 namespace ApprenticeWebAPI
@@ -43,17 +40,8 @@ namespace ApprenticeWebAPI
         /// <param name="services">IServiceCollection Interface</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(setupAction =>
-            {
-                setupAction.ReturnHttpNotAcceptable = true;
-                setupAction.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
-                var jsonOutputFormatter = setupAction.OutputFormatters.OfType<JsonOutputFormatter>().FirstOrDefault();
+            services.AddControllers();
 
-                if (jsonOutputFormatter != null && jsonOutputFormatter.SupportedMediaTypes.Contains("text/json"))
-                {
-                    jsonOutputFormatter.SupportedMediaTypes.Remove("text/json");
-                }
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(setupAction =>
             {
                 setupAction.SwaggerDoc($"ApprenticeWebAPI", new Microsoft.OpenApi.Models.OpenApiInfo()
@@ -87,8 +75,7 @@ namespace ApprenticeWebAPI
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        /// <param name="loggerFactory"></param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -100,8 +87,15 @@ namespace ApprenticeWebAPI
                 app.UseHsts();
             }
 
-            app.UseStatusCodePages();
             app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseSwagger();
             app.UseSwaggerUI(setupAction =>
             {
@@ -112,8 +106,6 @@ namespace ApprenticeWebAPI
                 setupAction.EnableValidator();
                 setupAction.RoutePrefix = "";
             });
-            app.UseMvc();
         }
     }
 }
-
