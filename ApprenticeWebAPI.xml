@@ -101,6 +101,18 @@
         <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.CreateExample(ApprenticeWebAPI.Models.Dto.ExampleRequestDto)">
             <inheritdoc />
         </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.GetExamples">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.GetExampleById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.UpdateExample(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.ExampleRequestDto})">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.ExampleLogic.DeleteExample(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic">
             <summary>
             The accounts logic interface.
@@ -242,6 +254,34 @@
             </summary>
             <param name="exampleRequestDto">The example request Dto.</param>
             <returns>The example response Dto.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic.GetExamples">
+            <summary>
+            Method for getting examples.
+            </summary>
+            <returns>The example response Dtos.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic.GetExampleById(System.Int32)">
+            <summary>
+            Method for getting an example by Id.
+            </summary>
+            <param name="exampleId">The example Id.</param>
+            <returns>The example.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic.UpdateExample(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.ExampleRequestDto})">
+            <summary>
+            Method for updating an example.
+            </summary>
+            <param name="exampleId">The example Id.</param>
+            <param name="patchRequest">The example patch request.</param>
+            <returns>The example.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IExampleLogic.DeleteExample(System.Int32)">
+            <summary>
+            Method for deleting an example.
+            </summary>
+            <param name="exampleId">The example Id.</param>
+            <returns>The status of the deletion of the example.</returns>
         </member>
         <member name="T:ApprenticeWebAPI.Controllers.AccountsController">
             <summary>
@@ -429,6 +469,33 @@
             <param name="exampleRequestDto">The example creation request body.</param>
             <returns>The example creation response.</returns>
         </member>
+        <member name="M:ApprenticeWebAPI.Controllers.ExamplesController.GetExamples">
+            <summary>
+            Endpoint for getting examples.
+            </summary>
+            <returns>The example retrieval response.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.ExamplesController.GetExampleById(System.Int32)">
+            <summary>
+            Endpoint for getting an example by Id.
+            </summary>
+            <returns>The example retrieval response.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.ExamplesController.UpdateAccount(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{ApprenticeWebAPI.Models.Dto.ExampleRequestDto})">
+            <summary>
+            Endpoint for updating an example.
+            </summary>
+            <param name="exampleId">The Id of the example to retrieve.</param>
+            <param name="patchRequest">The patch request body.</param>
+            <returns>The updated example.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Controllers.ExamplesController.DeleteExample(System.Int32)">
+            <summary>
+            Endpoint for deleting an example.
+            </summary>
+            <param name="exampleId">The Id of the example to retrieve.</param>
+            <returns>The status of the example deletion.</returns>
+        </member>
         <member name="T:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository">
             <summary>
             Class for the example repository implementation.
@@ -454,6 +521,18 @@
         <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.CreateExample(System.String)">
             <inheritdoc />
         </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.GetExamples">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.GetExampleById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.UpdateExample(System.Int32,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.DeleteExample(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository">
             <summary>
             Interface for the examples repository.
@@ -465,6 +544,32 @@
             </summary>
             <param name="value">The example value.</param>
             <returns>The Id of the new example.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository.GetExamples">
+            <summary>
+            Method for getting all examples.
+            </summary>
+            <returns>The collection of examples.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository.GetExampleById(System.Int32)">
+            <summary>
+            Method for getting an example by Id.
+            </summary>
+            <param name="exampleId">The example Id.</param>
+            <returns>The example.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository.UpdateExample(System.Int32,System.String)">
+            <summary>
+            Method for updating an example.
+            </summary>
+            <param name="exampleId">The example Id.</param>
+            <param name="value">The new example value.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository.DeleteExample(System.Int32)">
+            <summary>
+            Method for deleting an example.
+            </summary>
+            <param name="exampleId">The example Id.</param>
         </member>
         <member name="T:ApprenticeWebAPI.Models.Dto.AccountRequestDto">
             <summary>
@@ -728,6 +833,9 @@
             Copy of the MPP Core class for the data helper implementation.
             </summary>
         </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.Execute``1(System.Action{System.Data.SqlClient.SqlCommand}[])">
+            <inheritdoc />
+        </member>
         <member name="M:ApprenticeWebAPI.Utility.DataHelper.Execute(System.Action{System.Data.SqlClient.SqlCommand}[])">
             <inheritdoc />
         </member>
@@ -750,10 +858,27 @@
             <param name="cmd">The SQL command.</param>
             <param name="parameters">The dictionary parameters.</param>
         </member>
+        <member name="M:ApprenticeWebAPI.Utility.DataHelper.ExecuteTable(System.Data.SqlClient.SqlCommand)">
+            <summary>
+            Method for retrieving a data table from a SQL command result.
+            </summary>
+            <param name="cmd">The SQL command</param>
+            <returns>The datatable.</returns>
+        </member>
         <member name="T:ApprenticeWebAPI.Utility.Interfaces.IDataHelper">
             <summary>
             Copy of the MPP Core data helper.
             </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.Execute``1(System.Action{System.Data.SqlClient.SqlCommand}[])">
+            <summary>
+            Executes the specified command sequence.
+            Call this one when you need a DataSet, DataTable, an instance of T where T implements a private constructor that takes a DataRow to instantiate itself from
+            or the affected row count. The affected row count is only returned when the query returns the affected row count as a single scalar value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="commandSequence">The command sequence.</param>
+            <returns></returns>
         </member>
         <member name="M:ApprenticeWebAPI.Utility.Interfaces.IDataHelper.Execute(System.Action{System.Data.SqlClient.SqlCommand}[])">
             <summary>

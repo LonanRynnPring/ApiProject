@@ -6,12 +6,17 @@ using ApprenticeWebAPI.Utility;
 using ApprenticeWebAPI.Utility.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json.Serialization;
 
 namespace ApprenticeWebAPI
 {
@@ -40,7 +45,9 @@ namespace ApprenticeWebAPI
         /// <param name="services">IServiceCollection Interface</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(setupAction => setupAction.ReturnHttpNotAcceptable = true)
+                .AddXmlDataContractSerializerFormatters()
+                .AddNewtonsoftJson(setupAction => setupAction.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
             services.AddSwaggerGen(setupAction =>
             {

@@ -66,5 +66,9 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Example.sql" />
     <Build Include="dbo\StoredProcedures\CreateExample.sql" />
+    <Build Include="dbo\StoredProcedures\GetExamples.sql" />
+    <Build Include="dbo\StoredProcedures\GetExampleById.sql" />
+    <Build Include="dbo\StoredProcedures\UpdateExample.sql" />
+    <Build Include="dbo\StoredProcedures\DeleteExample.sql" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,41 @@ namespace ApprenticeWebAPI.Utility
     public class DataHelper : IDataHelper
     {
         /// <inheritdoc />
+        public T Execute<T>(params Action<SqlCommand>[] commandSequence)
+        {
+            using (var connection = new SqlConnection())
+            using (var cmd = new SqlCommand())
+            {
+                cmd.Connection = connection;
+
+                foreach (var commandItem in commandSequence)
+                {
+                    commandItem(cmd);
+                }
+
+                var returnObject = default(T);
+
+                if (typeof(T) == typeof(DataTable))
+                {
+                    returnObject = (T)((object)ExecuteTable(cmd));
+                }
+                else if (typeof(T).IsSubclassOf(typeof(DataSet)) || typeof(T) == typeof(DataSet))
+                {
+                    using (var adpt = new SqlDataAdapter(cmd) { SelectCommand = { CommandTimeout = cmd.CommandTimeout } })
+                    {
+                        var ds = (DataSet)Activator.CreateInstance(typeof(T));
+
+                        adpt.Fill(ds);
+
+                        returnObject = (T)((object)ds);
+                    }
+                }
+
+                return returnObject;
+            }
+        }
+
+        /// <inheritdoc />
         public int Execute(params Action<SqlCommand>[] commandSequence)
         {
             using (var connection = new SqlConnection())
@@ -91,6 +126,21 @@ namespace ApprenticeWebAPI.Utility
             foreach (var parameter in parameters)
             {
                 cmd.Parameters.AddWithValue(parameter.Key, parameter.Value ?? DBNull.Value);
+            }
+        }
+
+        /// <summary>
+        /// Method for retrieving a data table from a SQL command result.
+        /// </summary>
+        /// <param name="cmd">The SQL command</param>
+        /// <returns>The datatable.</returns>
+        private static DataTable ExecuteTable(SqlCommand cmd)
+        {
+            using (var adpt = new SqlDataAdapter(cmd) { SelectCommand = { CommandTimeout = cmd.CommandTimeout } })
+            {
+                var dt = new DataTable();
+                adpt.Fill(dt);
+                return dt;
             }
         }
     }
