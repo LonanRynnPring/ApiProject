@@ -66,5 +66,11 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Example.sql" />
     <Build Include="dbo\StoredProcedures\CreateExample.sql" />
+    <None Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\Card.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\Tables\Address.sql" />
+    <None Include="dbo\Tables\AccountAddress.sql" />
   </ItemGroup>
 </Project>
