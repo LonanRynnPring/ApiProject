@@ -14,9 +14,13 @@
 
   <ItemGroup>
     <Compile Remove="Apprentice Database\**" />
+    <Compile Remove="ApprenticeDatabase\**" />
     <Content Remove="Apprentice Database\**" />
+    <Content Remove="ApprenticeDatabase\**" />
     <EmbeddedResource Remove="Apprentice Database\**" />
+    <EmbeddedResource Remove="ApprenticeDatabase\**" />
     <None Remove="Apprentice Database\**" />
+    <None Remove="ApprenticeDatabase\**" />
   </ItemGroup>
 
   <ItemGroup>
