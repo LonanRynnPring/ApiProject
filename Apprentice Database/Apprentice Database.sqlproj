@@ -66,11 +66,13 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Example.sql" />
     <Build Include="dbo\StoredProcedures\CreateExample.sql" />
-    <None Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\Account.sql" />
+    <Build Include="dbo\Tables\AccountAddress.sql" />
+    <Build Include="dbo\Tables\Address.sql" />
     <Build Include="dbo\Tables\Card.sql" />
+    <Build Include="dbo\Tables\BankName.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbo\Tables\Address.sql" />
-    <None Include="dbo\Tables\AccountAddress.sql" />
+    <None Include="ApprenticeDatabase.publish.xml" />
   </ItemGroup>
 </Project>
