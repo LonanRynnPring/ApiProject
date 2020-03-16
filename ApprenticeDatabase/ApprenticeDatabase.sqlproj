@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Apprentice_Database</Name>
+    <Name>ApprenticeDatabase</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{bc6bda2e-de61-45a2-9c42-8f3f03440e59}</ProjectGuid>
@@ -66,6 +66,10 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Example.sql" />
     <Build Include="dbo\StoredProcedures\CreateExample.sql" />
+    <Build Include="dbo\StoredProcedures\GetExamples.sql" />
+    <Build Include="dbo\StoredProcedures\GetExampleById.sql" />
+    <Build Include="dbo\StoredProcedures\UpdateExample.sql" />
+    <Build Include="dbo\StoredProcedures\DeleteExample.sql" />
     <Build Include="dbo\Tables\Account.sql" />
     <Build Include="dbo\Tables\AccountAddress.sql" />
     <Build Include="dbo\Tables\Address.sql" />

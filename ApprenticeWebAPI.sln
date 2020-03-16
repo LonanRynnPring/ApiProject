@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29319.158
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApprenticeWebAPI", "ApprenticeWebAPI.csproj", "{F0F78A27-BC48-4631-A568-7ACEDEFEDDA8}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Apprentice Database", "Apprentice Database\Apprentice Database.sqlproj", "{BC6BDA2E-DE61-45A2-9C42-8F3F03440E59}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ApprenticeDatabase", "ApprenticeDatabase\ApprenticeDatabase.sqlproj", "{BC6BDA2E-DE61-45A2-9C42-8F3F03440E59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

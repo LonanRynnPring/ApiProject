@@ -10,6 +10,16 @@ namespace ApprenticeWebAPI.Utility.Interfaces
     public interface IDataHelper
     {
         /// <summary>
+        /// Executes the specified command sequence.
+        /// Call this one when you need a DataSet, DataTable, an instance of T where T implements a private constructor that takes a DataRow to instantiate itself from
+        /// or the affected row count. The affected row count is only returned when the query returns the affected row count as a single scalar value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="commandSequence">The command sequence.</param>
+        /// <returns></returns>
+        T Execute<T>(params Action<SqlCommand>[] commandSequence);
+
+        /// <summary>
         /// Executes the specified command sequence. 
         /// Call this one when you need the affected row count
         /// </summary>
