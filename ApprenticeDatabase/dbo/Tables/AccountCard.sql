@@ -5,7 +5,7 @@
 	[DateCreated] DATETIME2(7) CONSTRAINT [DF_AccountCard_DateCreated] DEFAULT (GETUTCDATE()) NOT NULL,
 	[DateLastUpdated] DATETIME2(7) CONSTRAINT [DF_AccountCard_DateLastUpdated] DEFAULT (GETUTCDATE()) NOT NULL,
 	CONSTRAINT [FK_AccountCard_AccountId] FOREIGN KEY ([AccountId]) REFERENCES [Account] ([AccountId]),
-	CONSTRAINT [FK_AccountCard_AddressId] FOREIGN KEY ([CardId]) REFERENCES [Card] ([CardId])
+	CONSTRAINT [FK_AccountCard_CardId] FOREIGN KEY ([CardId]) REFERENCES [Card] ([CardId])
 )
 GO
 
