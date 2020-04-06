@@ -76,6 +76,10 @@
     <Build Include="dbo\Tables\Card.sql" />
     <Build Include="dbo\Tables\BankName.sql" />
     <Build Include="dbo\Tables\AccountCard.sql" />
+    <Build Include="dbo\StoredProcedures\CreateAccount.sql" />
+    <Build Include="dbo\StoredProcedures\DeleteAccount.sql" />
+    <Build Include="dbo\StoredProcedures\GetAccounts.sql" />
+    <Build Include="dbo\StoredProcedures\UpdateAccount.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ApprenticeDatabase.publish.xml" />
