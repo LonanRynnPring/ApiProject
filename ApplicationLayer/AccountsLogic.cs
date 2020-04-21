@@ -1,4 +1,5 @@
 ﻿using ApprenticeWebAPI.ApplicationLayer.Interfaces;
+using ApprenticeWebAPI.DataAccessLayer.Interfaces;
 using ApprenticeWebAPI.Models.Dto;
 using ApprenticeWebAPI.Models.Entity;
 using ApprenticeWebAPI.Utility;
@@ -16,26 +17,47 @@ namespace ApprenticeWebAPI.ApplicationLayer
     /// </summary>
     public class AccountsLogic : IAccountsLogic
     {
+
+        /// <summary>
+        /// Account repository interface.
+        /// </summary>
+        private readonly IAccountsRepository _accountsRepository;
+        
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="accountsRepository">The accounts repository.</param>
+        public AccountsLogic(IAccountsRepository accountsRepository)
+        {
+            _accountsRepository = accountsRepository;
+        }
+
         #region CRUD Operation Methods
 
         /// <inheritdoc />
+        //public AccountResponseDto CreateAccount(AccountRequestDto accountRequestDto)
+        //{
+        //    /*
+        //     * TODO: Replace the AccountResponseDto instance with a call to the repository layer to add
+        //     * the account to the database. 
+        //     * Assign the newly created account's details to the response and return back out to the controller
+        //     * layer.
+        //    */
+
+        //    var response = new AccountResponseDto
+        //    {
+        //        AccountId = 1,
+        //        FirstName = accountRequestDto.FirstName,
+        //        Surname = accountRequestDto.Surname
+        //    };
+
+        //    return response;
+        //}
         public AccountResponseDto CreateAccount(AccountRequestDto accountRequestDto)
         {
-            /*
-             * TODO: Replace the AccountResponseDto instance with a call to the repository layer to add
-             * the account to the database. 
-             * Assign the newly created account's details to the response and return back out to the controller
-             * layer.
-            */
-
-            var response = new AccountResponseDto
-            {
-                AccountId = 1,
-                FirstName = accountRequestDto.FirstName,
-                Surname = accountRequestDto.Surname
-            };
-
-            return response;
+            var accountId = _accountsRepository.CreateAccount(accountRequestDto.FirstName, accountRequestDto.Surname, accountRequestDto.Title, accountRequestDto.Email);
+            var accountResponseDto = _accountsRepository.GetAccountById(accountId);
+            return accountResponseDto;
         }
 
         /// <inheritdoc />
@@ -125,6 +147,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
         #endregion CRUD Operation Methods
 
         #region Private Methods
+
 
         /// <summary>
         /// Temporary method for returning dummy data.

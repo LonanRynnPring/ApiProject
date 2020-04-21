@@ -53,7 +53,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public IList<AccountResponseDto> Getaccounts()
+        public IList<AccountResponseDto> GetAccount()
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
@@ -91,11 +91,14 @@ namespace ApprenticeWebAPI.DataAccessLayer
 
             if (dtAccounts.Rows.Count == 1)
             {
-                DataRow draccount = dtAccounts.Rows[0];
+                DataRow drAccount = dtAccounts.Rows[0];
                 account = new AccountResponseDto
                 {
-                    AccountId = draccount.Field<int>("AccountId"),
-                    Value = draccount.Field<string>("Value")
+                    AccountId = drAccount.Field<int>("AccountId"),
+                    FirstName = drAccount.Field<string>("FirstName"),
+                    Surname = drAccount.Field<string>("Surname"),
+                    Title = drAccount.Field<string>("Title"),
+                    Email = drAccount.Field<string>("Email")
                 };
             }
 
@@ -103,7 +106,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public void UpdateAccount(int accountId, string value)
+        public void UpdateAccount(int accountId, string firstName, string surname, string title, string email)
         {
             _dataHelper.Execute(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
@@ -111,7 +114,10 @@ namespace ApprenticeWebAPI.DataAccessLayer
                 _dataHelper.BindParameters(new Dictionary<string, object>
                 {
                     { "@AccountId", accountId },
-                    { "@Value", value }
+                    { "@FirstName", firstName },
+                    { "@Surname", surname },
+                    { "@Title", title },
+                    { "@Email", email }
                 }));
         }
 
