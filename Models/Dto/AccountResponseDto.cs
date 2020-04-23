@@ -30,16 +30,14 @@
         /// </summary>
         public string Email { get; set; }
 
-        ///// <summary>
-        ///// The date created.
-        ///// </summary>
-        //public string DateCreated { get; set; }
+        /// <summary>
+        /// The date created.
+        /// </summary>
+        public string DateCreated { get; set; }
 
-        ///// <summary>
-        ///// The date last updated.
-        ///// </summary>
-        //public string DateLastUpdated { get; set; }
-
-        //might need these ^^ not sure if this is just dealt with automatically on sql side.
+        /// <summary>
+        /// The date last updated.
+        /// </summary>
+        public string DateLastUpdated { get; set; }
     }
 }

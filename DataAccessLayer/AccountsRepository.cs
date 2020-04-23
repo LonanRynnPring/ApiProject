@@ -1,5 +1,5 @@
 ﻿using ApprenticeWebAPI.DataAccessLayer.Interfaces;
-using ApprenticeWebAPI.Models.Dto;
+using ApprenticeWebAPI.Models.Entity;
 using ApprenticeWebAPI.Utility.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -53,23 +53,25 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public IList<AccountResponseDto> GetAccount()
+        public IList<AccountsEntity> GetAccount()
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.GET_ACCOUNTS));
 
-            List<AccountResponseDto> accounts = new List<AccountResponseDto>();
+            List<AccountsEntity> accounts = new List<AccountsEntity>();
 
             foreach (DataRow drAccount in dtAccounts.Rows)
             {
-                accounts.Add(new AccountResponseDto
+                accounts.Add(new AccountsEntity
                 {
                     AccountId = drAccount.Field<int>("AccountId"),
                     FirstName = drAccount.Field<string>("FirstName"),
                     Surname = drAccount.Field<string>("Surname"),
                     Title = drAccount.Field<string>("Title"),
-                    Email = drAccount.Field<string>("Email")
+                    Email = drAccount.Field<string>("Email"),
+                    DateCreated = drAccount.Field<string>("DateCreated"),
+                    DateLastUpdated = drAccount.Field<string>("DateLastUpdated")
                 });
             }
 
@@ -77,7 +79,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public AccountResponseDto GetAccountById(int accountId)
+        public AccountsEntity GetAccountById(int accountId)
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
@@ -87,18 +89,20 @@ namespace ApprenticeWebAPI.DataAccessLayer
                     { "@AccountId", accountId }
                 }));
 
-            AccountResponseDto account = default(AccountResponseDto);
+            AccountsEntity account = default(AccountsEntity);
 
             if (dtAccounts.Rows.Count == 1)
             {
                 DataRow drAccount = dtAccounts.Rows[0];
-                account = new AccountResponseDto
+                account = new AccountsEntity
                 {
                     AccountId = drAccount.Field<int>("AccountId"),
                     FirstName = drAccount.Field<string>("FirstName"),
                     Surname = drAccount.Field<string>("Surname"),
                     Title = drAccount.Field<string>("Title"),
-                    Email = drAccount.Field<string>("Email")
+                    Email = drAccount.Field<string>("Email"),
+                    DateCreated = drAccount.Field<string>("DateCreated"),
+                    DateLastUpdated = drAccount.Field<string>("DateLastUpdated")
                 };
             }
 

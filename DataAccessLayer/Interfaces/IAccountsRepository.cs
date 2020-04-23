@@ -1,4 +1,4 @@
-﻿using ApprenticeWebAPI.Models.Dto;
+﻿using ApprenticeWebAPI.Models.Entity;
 using System.Collections.Generic;
 
 namespace ApprenticeWebAPI.DataAccessLayer.Interfaces
@@ -22,14 +22,14 @@ namespace ApprenticeWebAPI.DataAccessLayer.Interfaces
         /// Method for getting all accounts.
         /// </summary>
         /// <returns>The collection of accounts.</returns>
-        IList<AccountResponseDto> GetAccount();
+        IList<AccountsEntity> GetAccount();
 
         /// <summary>
         /// Method for getting an account by Id.
         /// </summary>
         /// <param name="accountId">The accounts Id.</param>
         /// <returns>The account.</returns>
-        AccountResponseDto GetAccountById(int accountId);
+        AccountsEntity GetAccountById(int accountId);
 
         /// <summary>
         /// Method for updating an account.

@@ -68,8 +68,8 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * any accounts from the database.
              * Assign the returned accounts to the response and return back out to the controller layer.
             */
-
-            return GetAccounts();
+            IList<AccountResponseDto> accountResponseDto = _accountsRepository.GetAccount();
+            return accountResponseDto;
         }
 
         /// <inheritdoc />
@@ -81,14 +81,17 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * Assign the existing returned account to the response and return back out to the controller layer.
             */
 
-            return GetAccounts().FirstOrDefault(a => a.AccountId == accountId);
+            //return GetAccounts().FirstOrDefault(a => a.AccountId == accountId);
+
+            AccountResponseDto accountResponseDto = _accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId);
+            return accountResponseDto;
         }
 
         /// <inheritdoc />
         public AccountResponseDto UpdateAccount(int accountId, JsonPatchDocument<AccountRequestDto> patchRequest)
         {
             var patchModel = new AccountRequestDto();
-            patchRequest.ApplyTo(patchModel, new ObjectAdapter(patchRequest.ContractResolver, logErrorAction: null));           
+            patchRequest.ApplyTo(patchModel, new ObjectAdapter(patchRequest.ContractResolver, logErrorAction: null));
 
             /*
              * TODO: Replace GetAccounts() with a call to the repository layer to retrieve
@@ -98,9 +101,9 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * Assign the updated account to the response and return back out to the controller layer.
             */
 
-            var account = GetAccounts().FirstOrDefault(a => a.AccountId == accountId);
+            AccountResponseDto accountResponseDto = _accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId);
 
-            if (account != default(AccountResponseDto))
+            if (accountResponseDto != default(AccountResponseDto))
             {
                 var patchOperations = PatchRequestConverter<AccountRequestDto>.GeneratePatchRequestList(patchRequest);
 
@@ -110,17 +113,25 @@ namespace ApprenticeWebAPI.ApplicationLayer
                     {
                         if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.FirstName)}", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            account.FirstName = patchOperation.Value;
+                            accountResponseDto.FirstName = patchOperation.Value;
                         }
                         else if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.Surname)}", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            account.Surname = patchOperation.Value;
+                            accountResponseDto.Surname = patchOperation.Value;
+                        }
+                        else if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.Title)}", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            accountResponseDto.Title = patchOperation.Value;
+                        }
+                        else if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.Email)}", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            accountResponseDto.Email = patchOperation.Value;
                         }
                     }
                 }
             }
 
-            return account;
+            return accountResponseDto;
         }
 
         /// <inheritdoc />
@@ -132,12 +143,12 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * If the account exists, remove the row from the table by going back to the repository layer.
             */
 
-            var accounts = GetAccounts();
-            var account = accounts.FirstOrDefault(a => a.AccountId == accountId);
+            IList<AccountResponseDto> accountResponseDto = _accountsRepository.GetAccount();
+            var account = accountResponseDto.FirstOrDefault(a => a.AccountId == accountId);
 
             if (account != default(AccountResponseDto))
             {
-                accounts.Remove(account);
+                accountResponseDto.Remove(account);
                 return HttpStatusCode.OK;
             }
 
@@ -147,6 +158,10 @@ namespace ApprenticeWebAPI.ApplicationLayer
         #endregion CRUD Operation Methods
 
         #region Private Methods
+
+
+        //Make mapper to change account entity to account response dto
+
 
 
         /// <summary>

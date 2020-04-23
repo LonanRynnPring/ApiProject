@@ -13,42 +13,19 @@ Sample call:
 */
 CREATE PROCEDURE [dbo].[UpdateAccount]
 	@AccountId INT,
-	@FirstName NVARCHAR(50),
-	@Surname NVARCHAR(50),
-	@Title NVARCHAR(50),
-	@Email NVARCHAR(255)
+	@FirstName NVARCHAR(50) = null,
+	@Surname NVARCHAR(50) = null,
+	@Title NVARCHAR(50) = null,
+	@Email NVARCHAR(255) = null
 AS
 BEGIN
-	IF @FirstName IS NOT NULL
-	BEGIN
-		UPDATE [dbo].[Account]
-		SET [FirstName] = @FirstName,
-			[DateLastUpdated] = GETUTCDATE()
-		WHERE [AccountId] = @AccountId
-	END
-
-	IF @Surname IS NOT NULL
-	BEGIN
-		UPDATE [dbo].[Account]
-		SET [Surname] = @Surname,
-			[DateLastUpdated] = GETUTCDATE()
-		WHERE [AccountId] = @AccountId
-	END
-
-	IF @Title IS NOT NULL
-	BEGIN
-		UPDATE [dbo].[Account]
-		SET [Title] = @Title,
-			[DateLastUpdated] = GETUTCDATE()
-		WHERE [AccountId] = @AccountId
-	END
-
-	IF @Email IS NOT NULL
-	BEGIN
-		UPDATE [dbo].[Account]
-		SET [Email] = @Email,
-			[DateLastUpdated] = GETUTCDATE()
-		WHERE [AccountId] = @AccountId
-	END
+	
+	UPDATE [dbo].[Account]
+	SET [FirstName] = ISNULL(@FirstName, FirstName),
+		[Surname] = ISNULL(@Surname, Surname),
+		[Title] = ISNULL(@Title, Title),
+		[Email] = ISNULL(@Email, Email),
+		[DateLastUpdated] = GETUTCDATE()
+	WHERE [AccountId] = @AccountId
 		
 END
