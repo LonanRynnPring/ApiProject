@@ -9,6 +9,17 @@
             The accounts logic implementation.
             </summary>
         </member>
+        <member name="F:ApprenticeWebAPI.ApplicationLayer.AccountsLogic._accountsRepository">
+            <summary>
+            Account repository interface.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.#ctor(ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="accountsRepository">The accounts repository.</param>
+        </member>
         <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
             <inheritdoc />
         </member>
@@ -24,11 +35,12 @@
         <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.DeleteAccount(System.Int32)">
             <inheritdoc />
         </member>
-        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.GetAccounts">
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountResponseDto(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
             <summary>
-            Temporary method for returning dummy data.
+            
             </summary>
-            <returns>A list of dummy data accounts.</returns>
+            <param name="dataIn"></param>
+            <returns></returns>
         </member>
         <member name="T:ApprenticeWebAPI.ApplicationLayer.AddressesLogic">
             <summary>
@@ -496,6 +508,43 @@
             <param name="exampleId">The Id of the example to retrieve.</param>
             <returns>The status of the example deletion.</returns>
         </member>
+        <member name="T:ApprenticeWebAPI.DataAccessLayer.AccountsRepository">
+            <summary>
+            Class for the account repository implementation.
+            </summary>
+        </member>
+        <member name="F:ApprenticeWebAPI.DataAccessLayer.AccountsRepository._dataHelper">
+            <summary>
+            IDataHelper interface.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.Configuration">
+            <summary>
+            The configuration
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.#ctor(ApprenticeWebAPI.Utility.Interfaces.IDataHelper,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Contructor.
+            </summary>
+            <param name="dataHelper">The data helper.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.CreateAccount(System.String,System.String,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.GetAccount">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.GetAccountById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.UpdateAccount(System.Int32,System.String,System.String,System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.DeleteAccount(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="T:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository">
             <summary>
             Class for the example repository implementation.
@@ -532,6 +581,50 @@
         </member>
         <member name="M:ApprenticeWebAPI.DataAccessLayer.ExamplesRepository.DeleteExample(System.Int32)">
             <inheritdoc />
+        </member>
+        <member name="T:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository">
+            <summary>
+            Interface for the accounts repository.
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.CreateAccount(System.String,System.String,System.String,System.String)">
+            <summary>
+            Method for creating an account.
+            </summary>
+            <param name="firstName">The accounts first name.</param>
+            <param name="surname">The accounts surname.</param>
+            <param name="title">The accounts title.</param>
+            <param name="email">The accounts email.</param>
+            <returns>The Id of the new account.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.GetAccount">
+            <summary>
+            Method for getting all accounts.
+            </summary>
+            <returns>The collection of accounts.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.GetAccountById(System.Int32)">
+            <summary>
+            Method for getting an account by Id.
+            </summary>
+            <param name="accountId">The accounts Id.</param>
+            <returns>The account.</returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.UpdateAccount(System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            Method for updating an account.
+            </summary>
+            <param name="accountId">The accounts Id.</param>
+            <param name="firstName">The accounts new first name.</param>
+            <param name="surname">The accounts new surname.</param>
+            <param name="title">The accounts new title.</param>
+            <param name="email">The accounts new email.</param>
+        </member>
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.DeleteAccount(System.Int32)">
+            <summary>
+            Method for deleting an account.
+            </summary>
+            <param name="accountId">The account Id.</param>
         </member>
         <member name="T:ApprenticeWebAPI.DataAccessLayer.Interfaces.IExamplesRepository">
             <summary>
@@ -586,6 +679,16 @@
             The surname.
             </summary>
         </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountRequestDto.Title">
+            <summary>
+            The title.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountRequestDto.Email">
+            <summary>
+            The email.
+            </summary>
+        </member>
         <member name="T:ApprenticeWebAPI.Models.Dto.AccountResponseDto">
             <summary>
             The account response Dto.
@@ -604,6 +707,26 @@
         <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.Surname">
             <summary>
             The surname.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.Title">
+            <summary>
+            The title.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.Email">
+            <summary>
+            The email.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.DateCreated">
+            <summary>
+            The date created.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Dto.AccountResponseDto.DateLastUpdated">
+            <summary>
+            The date last updated.
             </summary>
         </member>
         <member name="T:ApprenticeWebAPI.Models.Dto.AddressRequestDto">
@@ -739,6 +862,46 @@
         <member name="P:ApprenticeWebAPI.Models.Dto.ExampleResponseDto.Value">
             <summary>
             The example value.
+            </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Entity.AccountsEntity">
+            <summary>
+            This is the accounts entitiy used for the repository
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.AccountId">
+            <summary>
+            The account Id.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.FirstName">
+            <summary>
+            The first name.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.Surname">
+            <summary>
+            The surname.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.Title">
+            <summary>
+            The title.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.Email">
+            <summary>
+            The email.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.DateCreated">
+            <summary>
+            The date created.
+            </summary>
+        </member>
+        <member name="P:ApprenticeWebAPI.Models.Entity.AccountsEntity.DateLastUpdated">
+            <summary>
+            The date last updated.
             </summary>
         </member>
         <member name="T:ApprenticeWebAPI.Models.Entity.PatchRequest">

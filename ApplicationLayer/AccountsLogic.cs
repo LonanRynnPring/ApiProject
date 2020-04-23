@@ -56,7 +56,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
         public AccountResponseDto CreateAccount(AccountRequestDto accountRequestDto)
         {
             var accountId = _accountsRepository.CreateAccount(accountRequestDto.FirstName, accountRequestDto.Surname, accountRequestDto.Title, accountRequestDto.Email);
-            var accountResponseDto = _accountsRepository.GetAccountById(accountId);
+            var accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccountById(accountId));
             return accountResponseDto;
         }
 
@@ -68,8 +68,10 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * any accounts from the database.
              * Assign the returned accounts to the response and return back out to the controller layer.
             */
-            IList<AccountResponseDto> accountResponseDto = _accountsRepository.GetAccount();
-            return accountResponseDto;
+
+            IList<AccountResponseDto> AccountsEntity = MapToAccountResponseDtoList(_accountsRepository.GetAccount());
+            //AccountsEntity = MapToAccountResponseDto(AccountsEntity);
+            return AccountsEntity;
         }
 
         /// <inheritdoc />
@@ -83,7 +85,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
 
             //return GetAccounts().FirstOrDefault(a => a.AccountId == accountId);
 
-            AccountResponseDto accountResponseDto = _accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId);
+            AccountResponseDto accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId));
             return accountResponseDto;
         }
 
@@ -101,7 +103,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * Assign the updated account to the response and return back out to the controller layer.
             */
 
-            AccountResponseDto accountResponseDto = _accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId);
+            AccountResponseDto accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId));
 
             if (accountResponseDto != default(AccountResponseDto))
             {
@@ -143,12 +145,12 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * If the account exists, remove the row from the table by going back to the repository layer.
             */
 
-            IList<AccountResponseDto> accountResponseDto = _accountsRepository.GetAccount();
-            var account = accountResponseDto.FirstOrDefault(a => a.AccountId == accountId);
+            IList<AccountsEntity> accountsEntity = _accountsRepository.GetAccount();
+            var account = accountsEntity.FirstOrDefault(a => a.AccountId == accountId);
 
-            if (account != default(AccountResponseDto))
+            if (account != default(AccountsEntity))
             {
-                accountResponseDto.Remove(account);
+                accountsEntity.Remove(account);
                 return HttpStatusCode.OK;
             }
 
@@ -159,26 +161,49 @@ namespace ApprenticeWebAPI.ApplicationLayer
 
         #region Private Methods
 
-
-        //Make mapper to change account entity to account response dto
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataIn"></param>
+        /// <returns></returns>
+        private AccountResponseDto MapToAccountResponseDto(AccountsEntity dataIn)
+        {
+            AccountResponseDto accountResponseDto = new AccountResponseDto
+            {
+                AccountId = dataIn.AccountId,
+                FirstName = dataIn.FirstName,
+                Surname = dataIn.Surname,
+                Title = dataIn.Title,
+                Email = dataIn.Email,
+                DateCreated = dataIn.DateCreated,
+                DateLastUpdated = dataIn.DateLastUpdated
+            };
+            return accountResponseDto;
+        }
 
         /// <summary>
-        /// Temporary method for returning dummy data.
+        /// 
         /// </summary>
-        /// <returns>A list of dummy data accounts.</returns>
-        private List<AccountResponseDto> GetAccounts()
-        {            
-            return new List<AccountResponseDto>()
+        /// <param name="dataIn"></param>
+        /// <returns></returns>
+        private IList<AccountResponseDto> MapToAccountResponseDtoList(List<AccountsEntity> dataIn)
+        {
+            var account = new List<AccountResponseDto>();
+            foreach(AccountsEntity accountsEntity in dataIn)
             {
-                new AccountResponseDto
+                AccountResponseDto accountResponseDto = new AccountResponseDto
                 {
-                    AccountId = 1,
-                    FirstName = "Demo",
-                    Surname = "Account 1"
-                }
-            };
+                    AccountId = accountsEntity.AccountId,
+                    FirstName = accountsEntity.FirstName,
+                    Surname = accountsEntity.Surname,
+                    Title = accountsEntity.Title,
+                    Email = accountsEntity.Email,
+                    DateCreated = accountsEntity.DateCreated,
+                    DateLastUpdated = accountsEntity.DateLastUpdated
+                };
+                account.Add(accountResponseDto);
+            }
+            return account;
         }
 
         #endregion Private Methods
