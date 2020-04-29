@@ -2,6 +2,7 @@
 using ApprenticeWebAPI.Models.Entity;
 using ApprenticeWebAPI.Utility.Interfaces;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -53,7 +54,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public IList<AccountsEntity> GetAccount()
+        public List<AccountsEntity> GetAccount()
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
@@ -70,8 +71,8 @@ namespace ApprenticeWebAPI.DataAccessLayer
                     Surname = drAccount.Field<string>("Surname"),
                     Title = drAccount.Field<string>("Title"),
                     Email = drAccount.Field<string>("Email"),
-                    DateCreated = drAccount.Field<string>("DateCreated"),
-                    DateLastUpdated = drAccount.Field<string>("DateLastUpdated")
+                    DateCreated = drAccount.Field<DateTime>("DateCreated"),
+                    DateLastUpdated = drAccount.Field<DateTime>("DateLastUpdated")
                 });
             }
 
@@ -101,8 +102,8 @@ namespace ApprenticeWebAPI.DataAccessLayer
                     Surname = drAccount.Field<string>("Surname"),
                     Title = drAccount.Field<string>("Title"),
                     Email = drAccount.Field<string>("Email"),
-                    DateCreated = drAccount.Field<string>("DateCreated"),
-                    DateLastUpdated = drAccount.Field<string>("DateLastUpdated")
+                    DateCreated = drAccount.Field<DateTime>("DateCreated"),
+                    DateLastUpdated = drAccount.Field<DateTime>("DateLastUpdated")
                 };
             }
 

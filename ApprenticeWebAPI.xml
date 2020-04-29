@@ -42,6 +42,13 @@
             <param name="dataIn"></param>
             <returns></returns>
         </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountResponseDtoList(System.Collections.Generic.List{ApprenticeWebAPI.Models.Entity.AccountsEntity})">
+            <summary>
+            
+            </summary>
+            <param name="dataIn"></param>
+            <returns></returns>
+        </member>
         <member name="T:ApprenticeWebAPI.ApplicationLayer.AddressesLogic">
             <summary>
             The address logic implementation.

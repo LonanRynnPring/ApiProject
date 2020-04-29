@@ -61,7 +61,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
         }
 
         /// <inheritdoc />
-        public IList<AccountResponseDto> RetrieveAccounts()
+        public List<AccountResponseDto> RetrieveAccounts()
         {
             /*
              * TODO: Replace GetAccounts() with a call to the repository layer to retrieve
@@ -69,7 +69,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
              * Assign the returned accounts to the response and return back out to the controller layer.
             */
 
-            IList<AccountResponseDto> AccountsEntity = MapToAccountResponseDtoList(_accountsRepository.GetAccount());
+            List<AccountResponseDto> AccountsEntity = MapToAccountResponseDtoList(_accountsRepository.GetAccount());
             //AccountsEntity = MapToAccountResponseDto(AccountsEntity);
             return AccountsEntity;
         }
@@ -85,7 +85,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
 
             //return GetAccounts().FirstOrDefault(a => a.AccountId == accountId);
 
-            AccountResponseDto accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId));
+            AccountResponseDto accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccountById(accountId));
             return accountResponseDto;
         }
 
@@ -131,6 +131,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
                         }
                     }
                 }
+                _accountsRepository.UpdateAccount(accountId, accountResponseDto.FirstName, accountResponseDto.Surname, accountResponseDto.Title, accountResponseDto.Email);
             }
 
             return accountResponseDto;
@@ -150,6 +151,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
 
             if (account != default(AccountsEntity))
             {
+                _accountsRepository.DeleteAccount(accountId);
                 accountsEntity.Remove(account);
                 return HttpStatusCode.OK;
             }
@@ -186,7 +188,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
         /// </summary>
         /// <param name="dataIn"></param>
         /// <returns></returns>
-        private IList<AccountResponseDto> MapToAccountResponseDtoList(List<AccountsEntity> dataIn)
+        private List<AccountResponseDto> MapToAccountResponseDtoList(List<AccountsEntity> dataIn)
         {
             var account = new List<AccountResponseDto>();
             foreach(AccountsEntity accountsEntity in dataIn)

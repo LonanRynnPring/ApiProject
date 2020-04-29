@@ -21,7 +21,7 @@ namespace ApprenticeWebAPI.ApplicationLayer.Interfaces
         /// Method for retrieving all accounts.
         /// </summary>
         /// <returns>A collection of accounts.</returns>
-        IList<AccountResponseDto> RetrieveAccounts();
+        List<AccountResponseDto> RetrieveAccounts();
 
         /// <summary>
         /// Method for retrieving a single account.

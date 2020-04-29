@@ -74,6 +74,7 @@ namespace ApprenticeWebAPI
             #region Data Access Layer
             services.AddScoped<IDataHelper, DataHelper>();
             services.AddScoped<IExamplesRepository, ExamplesRepository>();
+            services.AddScoped<IAccountsRepository, AccountsRepository>();
             #endregion Data Access Layer
         }
 

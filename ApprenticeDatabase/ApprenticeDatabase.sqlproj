@@ -80,6 +80,7 @@
     <Build Include="dbo\StoredProcedures\DeleteAccount.sql" />
     <Build Include="dbo\StoredProcedures\GetAccounts.sql" />
     <Build Include="dbo\StoredProcedures\UpdateAccount.sql" />
+    <Build Include="dbo\StoredProcedures\GetAccountById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ApprenticeDatabase.publish.xml" />

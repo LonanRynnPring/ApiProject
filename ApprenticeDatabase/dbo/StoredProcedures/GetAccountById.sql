@@ -18,7 +18,9 @@ BEGIN
 		[FirstName], 
 		[Surname], 
 		[Title], 
-		[Email]
+		[Email],
+		[DateCreated],
+		[DateLastUpdated]
 	FROM [dbo].[Account]
 	WHERE [AccountId] = @AccountId
 END

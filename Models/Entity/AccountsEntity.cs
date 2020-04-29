@@ -39,11 +39,11 @@ namespace ApprenticeWebAPI.Models.Entity
             /// <summary>
             /// The date created.
             /// </summary>
-            public string DateCreated { get; set; }
+            public DateTime DateCreated { get; set; }
 
             /// <summary>
             /// The date last updated.
             /// </summary>
-            public string DateLastUpdated { get; set; }
+            public DateTime DateLastUpdated { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ApprenticeWebAPI.Models.Dto
+﻿using System;
+
+namespace ApprenticeWebAPI.Models.Dto
 {
     /// <summary>
     /// The account response Dto.
@@ -33,11 +35,11 @@
         /// <summary>
         /// The date created.
         /// </summary>
-        public string DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         /// <summary>
         /// The date last updated.
         /// </summary>
-        public string DateLastUpdated { get; set; }
+        public DateTime DateLastUpdated { get; set; }
     }
 }
