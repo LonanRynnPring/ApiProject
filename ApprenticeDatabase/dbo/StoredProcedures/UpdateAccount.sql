@@ -13,10 +13,10 @@ Sample call:
 */
 CREATE PROCEDURE [dbo].[UpdateAccount]
 	@AccountId INT,
-	@FirstName NVARCHAR(50) = null,
-	@Surname NVARCHAR(50) = null,
-	@Title NVARCHAR(50) = null,
-	@Email NVARCHAR(255) = null
+	@FirstName NVARCHAR(50) = NULL,
+	@Surname NVARCHAR(50) = NULL,
+	@Title NVARCHAR(50) = NULL,
+	@Email NVARCHAR(255) = NULL
 AS
 BEGIN
 	

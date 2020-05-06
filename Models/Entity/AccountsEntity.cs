@@ -10,7 +10,6 @@ namespace ApprenticeWebAPI.Models.Entity
     /// </summary>
     public class AccountsEntity
     {
-        
             /// <summary>
             /// The account Id.
             /// </summary>

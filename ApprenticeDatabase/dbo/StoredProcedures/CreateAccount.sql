@@ -9,7 +9,7 @@ Sample call:
 	DECLARE @Surname NVARCHAR(50) = 'Roe';
 	DECLARE @Title NVARCHAR(50) = 'Ms';
 	DECLARE @Email NVARCHAR(255) = 'janeroe@email.com';
-	EXEC [dbo].[CreateExample] @FirstName, @Surname, @Title, @Email;
+	EXEC [dbo].[CreateAccount] @FirstName, @Surname, @Title, @Email;
 ========================================================================================================================
 */
 CREATE PROCEDURE [dbo].[CreateAccount]
