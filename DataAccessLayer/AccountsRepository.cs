@@ -1,4 +1,5 @@
 ﻿using ApprenticeWebAPI.DataAccessLayer.Interfaces;
+using ApprenticeWebAPI.Models.Dto;
 using ApprenticeWebAPI.Models.Entity;
 using ApprenticeWebAPI.Utility.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -54,7 +55,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public List<AccountsEntity> GetAccount()
+        public List<AccountsEntity> GetAccounts()
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
@@ -150,5 +151,18 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         #endregion Auxiliaries
+
+        #region Private Methods
+
+        //private void ColumnNames()
+        //{
+        //    string AccountId = "AccountId";
+        //    string FirstName = "FirstName";
+        //    string Surname = "Surname";
+        //    string Title = "Title";
+        //    string Email = "Email";
+        //}
+
+        #endregion Private Methods
     }
 }

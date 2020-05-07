@@ -540,7 +540,7 @@
         <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.CreateAccount(System.String,System.String,System.String,System.String)">
             <inheritdoc />
         </member>
-        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.GetAccount">
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.GetAccounts">
             <inheritdoc />
         </member>
         <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.GetAccountById(System.Int32)">
@@ -604,7 +604,7 @@
             <param name="email">The accounts email.</param>
             <returns>The Id of the new account.</returns>
         </member>
-        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.GetAccount">
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.GetAccounts">
             <summary>
             Method for getting all accounts.
             </summary>

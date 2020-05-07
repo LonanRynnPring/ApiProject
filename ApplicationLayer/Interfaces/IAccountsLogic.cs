@@ -43,6 +43,6 @@ namespace ApprenticeWebAPI.ApplicationLayer.Interfaces
         /// </summary>
         /// <param name="accountId">The Id of the account we want to retrieve.</param>
         /// <returns>The status of the deletion of the account.</returns>
-        HttpStatusCode DeleteAccount(int accountId);
+        bool DeleteAccount(int accountId);
     }
 }

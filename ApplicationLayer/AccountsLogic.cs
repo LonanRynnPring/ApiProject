@@ -45,7 +45,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
         /// <inheritdoc />
         public List<AccountResponseDto> RetrieveAccounts()
         {
-            List<AccountResponseDto> AccountsEntities = MapToAccountResponseDtoList(_accountsRepository.GetAccount());
+            List<AccountResponseDto> AccountsEntities = MapToAccountResponseDtoList(_accountsRepository.GetAccounts());
             return AccountsEntities;
         }
 
@@ -62,7 +62,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
             var patchModel = new AccountRequestDto();
             patchRequest.ApplyTo(patchModel, new ObjectAdapter(patchRequest.ContractResolver, logErrorAction: null));
 
-            AccountResponseDto accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccount().FirstOrDefault(a => a.AccountId == accountId));
+            AccountResponseDto accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccountById(accountId));
 
             if (accountResponseDto != default(AccountResponseDto))
             {
@@ -97,19 +97,19 @@ namespace ApprenticeWebAPI.ApplicationLayer
         }
 
         /// <inheritdoc />
-        public HttpStatusCode DeleteAccount(int accountId)
+        public bool DeleteAccount(int accountId)
         {
-            IList<AccountsEntity> accountsEntity = _accountsRepository.GetAccount();
+            IList<AccountsEntity> accountsEntity = _accountsRepository.GetAccounts();
             var account = accountsEntity.FirstOrDefault(a => a.AccountId == accountId);
 
             if (account != default(AccountsEntity))
             {
                 _accountsRepository.DeleteAccount(accountId);
                 accountsEntity.Remove(account);
-                return HttpStatusCode.OK;
+                return true;
             }
 
-            return HttpStatusCode.NotFound;
+            return false;
         }
 
         #endregion CRUD Operation Methods
@@ -123,7 +123,7 @@ namespace ApprenticeWebAPI.ApplicationLayer
         /// <returns></returns>
         private AccountResponseDto MapToAccountResponseDto(AccountsEntity dataIn)
         {
-            AccountResponseDto accountResponseDto = new AccountResponseDto
+            return new AccountResponseDto
             {
                 AccountId = dataIn.AccountId,
                 FirstName = dataIn.FirstName,
@@ -133,7 +133,6 @@ namespace ApprenticeWebAPI.ApplicationLayer
                 DateCreated = dataIn.DateCreated,
                 DateLastUpdated = dataIn.DateLastUpdated
             };
-            return accountResponseDto;
         }
 
         /// <summary>

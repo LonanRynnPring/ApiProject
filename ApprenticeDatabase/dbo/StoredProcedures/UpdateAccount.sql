@@ -21,10 +21,10 @@ AS
 BEGIN
 	
 	UPDATE [dbo].[Account]
-	SET [FirstName] = ISNULL(@FirstName, FirstName),
-		[Surname] = ISNULL(@Surname, Surname),
-		[Title] = ISNULL(@Title, Title),
-		[Email] = ISNULL(@Email, Email),
+	SET [FirstName] = ISNULL(@FirstName, [FirstName]),
+		[Surname] = ISNULL(@Surname, [Surname]),
+		[Title] = ISNULL(@Title, [Title]),
+		[Email] = ISNULL(@Email, [Email]),
 		[DateLastUpdated] = GETUTCDATE()
 	WHERE [AccountId] = @AccountId
 		

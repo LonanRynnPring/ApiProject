@@ -106,7 +106,8 @@ namespace ApprenticeWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(void))]
         public ActionResult DeleteAccount(int accountId)
         {
-            return StatusCode((int)_accountsLogic.DeleteAccount(accountId));
+            var response = _accountsLogic.DeleteAccount(accountId);
+            return StatusCode(response ? (int)HttpStatusCode.OK : (int)HttpStatusCode.NotFound);
         }
     }
 }

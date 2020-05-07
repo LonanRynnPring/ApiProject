@@ -22,7 +22,7 @@ namespace ApprenticeWebAPI.DataAccessLayer.Interfaces
         /// Method for getting all accounts.
         /// </summary>
         /// <returns>The collection of accounts.</returns>
-        List<AccountsEntity> GetAccount();
+        List<AccountsEntity> GetAccounts();
 
         /// <summary>
         /// Method for getting an account by Id.
