@@ -93,19 +93,18 @@ namespace ApprenticeWebAPI.ApplicationLayer
                 _accountsRepository.UpdateAccount(accountId, accountResponseDto.FirstName, accountResponseDto.Surname, accountResponseDto.Title, accountResponseDto.Email);
             }
 
+            accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccountById(accountId));
             return accountResponseDto;
         }
 
         /// <inheritdoc />
         public bool DeleteAccount(int accountId)
         {
-            IList<AccountsEntity> accountsEntity = _accountsRepository.GetAccounts();
-            var account = accountsEntity.FirstOrDefault(a => a.AccountId == accountId);
+            AccountsEntity account = _accountsRepository.GetAccountById(accountId);
 
             if (account != default(AccountsEntity))
             {
                 _accountsRepository.DeleteAccount(accountId);
-                accountsEntity.Remove(account);
                 return true;
             }
 
