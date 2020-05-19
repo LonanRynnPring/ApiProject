@@ -37,8 +37,9 @@ namespace ApprenticeWebAPI.ApplicationLayer
         /// <inheritdoc />
         public AccountResponseDto CreateAccount(AccountRequestDto accountRequestDto)
         {
-            var accountId = _accountsRepository.CreateAccount(accountRequestDto.FirstName, accountRequestDto.Surname, accountRequestDto.Title, accountRequestDto.Email);
-            var accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccountById(accountId));
+            var entity = MapToAccountsEntity(accountRequestDto);
+            var account = _accountsRepository.CreateAccount(entity);
+            var accountResponseDto = MapToAccountResponseDto(account);
             return accountResponseDto;
         }
 
@@ -67,30 +68,30 @@ namespace ApprenticeWebAPI.ApplicationLayer
             if (accountResponseDto != default(AccountResponseDto))
             {
                 var patchOperations = PatchRequestConverter<AccountRequestDto>.GeneratePatchRequestList(patchRequest);
-
+                string firstName = null, surname = null, title = null, email = null;
                 foreach (PatchRequest patchOperation in patchOperations)
                 {
                     if (patchOperation.Action == PatchOperations.Replace)
                     {
                         if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.FirstName)}", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            accountResponseDto.FirstName = patchOperation.Value;
+                            firstName = patchOperation.Value;
                         }
                         else if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.Surname)}", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            accountResponseDto.Surname = patchOperation.Value;
+                            surname = patchOperation.Value;
                         }
                         else if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.Title)}", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            accountResponseDto.Title = patchOperation.Value;
+                            title = patchOperation.Value;
                         }
                         else if (patchOperation.ParameterName.Equals($"/{nameof(AccountRequestDto.Email)}", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            accountResponseDto.Email = patchOperation.Value;
+                            email = patchOperation.Value;
                         }
                     }
                 }
-                _accountsRepository.UpdateAccount(accountId, accountResponseDto.FirstName, accountResponseDto.Surname, accountResponseDto.Title, accountResponseDto.Email);
+                _accountsRepository.UpdateAccount(accountId, firstName, surname, title, email);
             }
 
             accountResponseDto = MapToAccountResponseDto(_accountsRepository.GetAccountById(accountId));
@@ -131,6 +132,22 @@ namespace ApprenticeWebAPI.ApplicationLayer
                 Email = dataIn.Email,
                 DateCreated = dataIn.DateCreated,
                 DateLastUpdated = dataIn.DateLastUpdated
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataIn"></param>
+        /// <returns></returns>
+        private AccountsEntity MapToAccountsEntity(AccountRequestDto dataIn)
+        {
+            return new AccountsEntity
+            {
+                FirstName = dataIn.FirstName,
+                Surname = dataIn.Surname,
+                Title = dataIn.Title,
+                Email = dataIn.Email
             };
         }
 

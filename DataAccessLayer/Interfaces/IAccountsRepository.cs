@@ -11,12 +11,9 @@ namespace ApprenticeWebAPI.DataAccessLayer.Interfaces
         /// <summary>
         /// Method for creating an account.
         /// </summary>
-        /// <param name="firstName">The accounts first name.</param>
-        /// <param name="surname">The accounts surname.</param>
-        /// <param name="title">The accounts title.</param>
-        /// <param name="email">The accounts email.</param>
+        /// <param name="entity">The accounts first name.</param>
         /// <returns>The Id of the new account.</returns>
-        int CreateAccount(string firstName, string surname, string title, string email);
+        AccountsEntity CreateAccount(AccountsEntity entity);
 
         /// <summary>
         /// Method for getting all accounts.
@@ -39,7 +36,7 @@ namespace ApprenticeWebAPI.DataAccessLayer.Interfaces
         /// <param name="surname">The accounts new surname.</param>
         /// <param name="title">The accounts new title.</param>
         /// <param name="email">The accounts new email.</param>
-        void UpdateAccount(int accountId, string firstName, string surname, string title, string email);
+        void UpdateAccount(int accountId, string firstName = null, string surname = null, string title = null, string email = null);
 
         /// <summary>
         /// Method for deleting an account.

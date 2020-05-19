@@ -24,5 +24,6 @@ BEGIN
 	VALUES 
 	(@FirstName, @Surname, @Title, @Email);
 
-	RETURN SCOPE_IDENTITY();
+	--RETURN SCOPE_IDENTITY();
+	SELECT [AccountId], [FirstName], [Surname], [Title], [Email], [DateCreated], [DateLastUpdated] FROM [dbo].[Account] WHERE AccountId = SCOPE_IDENTITY();
 END

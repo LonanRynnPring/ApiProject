@@ -36,22 +36,37 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public int CreateAccount(string firstName, string surname, string title, string email)
+        public AccountsEntity CreateAccount(AccountsEntity entity)
         {
-            var accountId = 0;
-            _dataHelper.Execute(
-                (c) => accountId = (int)c,
+            DataTable dtAccounts = _dataHelper.Execute<DataTable>(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.CREATE_ACCOUNT),
                 _dataHelper.BindParameters(new Dictionary<string, object>
                 {
-                    { "@FirstName", firstName },
-                    { "@Surname", surname },
-                    { "@Title", title },
-                    { "@Email", email }
+                    { "@FirstName", entity.FirstName },
+                    { "@Surname", entity.Surname },
+                    { "@Title", entity.Title },
+                    { "@Email", entity.Email }
                 }));
 
-            return accountId;
+            AccountsEntity account = default(AccountsEntity);
+
+            if (dtAccounts.Rows.Count == 1)
+            {
+                DataRow drAccount = dtAccounts.Rows[0];
+                account = new AccountsEntity
+                {
+                    AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
+                    FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
+                    Surname = drAccount.Field<string>(Columns.SURNAME),
+                    Title = drAccount.Field<string>(Columns.TITLE),
+                    Email = drAccount.Field<string>(Columns.EMAIL),
+                    DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
+                    DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
+                };
+            }
+
+            return account;
         }
 
         /// <inheritdoc />
@@ -67,13 +82,13 @@ namespace ApprenticeWebAPI.DataAccessLayer
             {
                 accounts.Add(new AccountsEntity
                 {
-                    AccountId = drAccount.Field<int>("AccountId"),
-                    FirstName = drAccount.Field<string>("FirstName"),
-                    Surname = drAccount.Field<string>("Surname"),
-                    Title = drAccount.Field<string>("Title"),
-                    Email = drAccount.Field<string>("Email"),
-                    DateCreated = drAccount.Field<DateTime>("DateCreated"),
-                    DateLastUpdated = drAccount.Field<DateTime>("DateLastUpdated")
+                    AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
+                    FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
+                    Surname = drAccount.Field<string>(Columns.SURNAME),
+                    Title = drAccount.Field<string>(Columns.TITLE),
+                    Email = drAccount.Field<string>(Columns.EMAIL),
+                    DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
+                    DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
                 });
             }
 
@@ -98,13 +113,13 @@ namespace ApprenticeWebAPI.DataAccessLayer
                 DataRow drAccount = dtAccounts.Rows[0];
                 account = new AccountsEntity
                 {
-                    AccountId = drAccount.Field<int>("AccountId"),
-                    FirstName = drAccount.Field<string>("FirstName"),
-                    Surname = drAccount.Field<string>("Surname"),
-                    Title = drAccount.Field<string>("Title"),
-                    Email = drAccount.Field<string>("Email"),
-                    DateCreated = drAccount.Field<DateTime>("DateCreated"),
-                    DateLastUpdated = drAccount.Field<DateTime>("DateLastUpdated")
+                    AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
+                    FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
+                    Surname = drAccount.Field<string>(Columns.SURNAME),
+                    Title = drAccount.Field<string>(Columns.TITLE),
+                    Email = drAccount.Field<string>(Columns.EMAIL),
+                    DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
+                    DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
                 };
             }
 
@@ -112,7 +127,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         }
 
         /// <inheritdoc />
-        public void UpdateAccount(int accountId, string firstName, string surname, string title, string email)
+        public void UpdateAccount(int accountId, string firstName = null, string surname = null, string title = null, string email = null)
         {
             _dataHelper.Execute(
                 _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
@@ -154,14 +169,16 @@ namespace ApprenticeWebAPI.DataAccessLayer
 
         #region Private Methods
 
-        //private void ColumnNames()
-        //{
-        //    string AccountId = "AccountId";
-        //    string FirstName = "FirstName";
-        //    string Surname = "Surname";
-        //    string Title = "Title";
-        //    string Email = "Email";
-        //}
+        private class Columns
+        {
+            public const string ACCOUNT_ID = "AccountId";
+            public const string FIRST_NAME = "FirstName";
+            public const string SURNAME = "Surname";
+            public const string TITLE = "Title";
+            public const string EMAIL = "Email";
+            public const string DATE_CREATED = "DateCreated";
+            public const string DATE_LAST_UPDATED = "DateLastUpdated";
+        }
 
         #endregion Private Methods
     }

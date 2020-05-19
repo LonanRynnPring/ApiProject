@@ -42,6 +42,13 @@
             <param name="dataIn"></param>
             <returns></returns>
         </member>
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountsEntity(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="dataIn"></param>
+            <returns></returns>
+        </member>
         <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountResponseDtoList(System.Collections.Generic.List{ApprenticeWebAPI.Models.Entity.AccountsEntity})">
             <summary>
             
@@ -537,7 +544,7 @@
             <param name="dataHelper">The data helper.</param>
             <param name="configuration">The configuration.</param>
         </member>
-        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.CreateAccount(System.String,System.String,System.String,System.String)">
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.CreateAccount(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
             <inheritdoc />
         </member>
         <member name="M:ApprenticeWebAPI.DataAccessLayer.AccountsRepository.GetAccounts">
@@ -594,14 +601,11 @@
             Interface for the accounts repository.
             </summary>
         </member>
-        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.CreateAccount(System.String,System.String,System.String,System.String)">
+        <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.CreateAccount(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
             <summary>
             Method for creating an account.
             </summary>
-            <param name="firstName">The accounts first name.</param>
-            <param name="surname">The accounts surname.</param>
-            <param name="title">The accounts title.</param>
-            <param name="email">The accounts email.</param>
+            <param name="entity">The accounts first name.</param>
             <returns>The Id of the new account.</returns>
         </member>
         <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.GetAccounts">
