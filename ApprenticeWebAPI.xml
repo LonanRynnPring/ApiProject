@@ -20,7 +20,7 @@
             </summary>
             <param name="accountsRepository">The accounts repository.</param>
         </member>
-        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
             <inheritdoc />
         </member>
         <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.RetrieveAccounts">
@@ -34,27 +34,6 @@
         </member>
         <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.DeleteAccount(System.Int32)">
             <inheritdoc />
-        </member>
-        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountResponseDto(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
-            <summary>
-            
-            </summary>
-            <param name="dataIn"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountsEntity(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
-            <summary>
-            
-            </summary>
-            <param name="dataIn"></param>
-            <returns></returns>
-        </member>
-        <member name="M:ApprenticeWebAPI.ApplicationLayer.AccountsLogic.MapToAccountResponseDtoList(System.Collections.Generic.List{ApprenticeWebAPI.Models.Entity.AccountsEntity})">
-            <summary>
-            
-            </summary>
-            <param name="dataIn"></param>
-            <returns></returns>
         </member>
         <member name="T:ApprenticeWebAPI.ApplicationLayer.AddressesLogic">
             <summary>
@@ -144,12 +123,12 @@
             The accounts logic interface.
             </summary>
         </member>
-        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+        <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.CreateAccount(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
             <summary>
             Method for creating an account.
             </summary>
-            <param name="accountRequestDto">The account request Dto.</param>
-            <returns>An account response Dto.</returns>
+            <param name="accountsEntity">The account entity.</param>
+            <returns>An account entity.</returns>
         </member>
         <member name="M:ApprenticeWebAPI.ApplicationLayer.Interfaces.IAccountsLogic.RetrieveAccounts">
             <summary>
@@ -605,8 +584,8 @@
             <summary>
             Method for creating an account.
             </summary>
-            <param name="entity">The accounts first name.</param>
-            <returns>The Id of the new account.</returns>
+            <param name="entity">An object containing the accounts first name, surnam, title and email.</param>
+            <returns>The the new account.</returns>
         </member>
         <member name="M:ApprenticeWebAPI.DataAccessLayer.Interfaces.IAccountsRepository.GetAccounts">
             <summary>
@@ -939,6 +918,32 @@
             <summary>
             If the action is not set then this holds the original action type
             </summary>
+        </member>
+        <member name="T:ApprenticeWebAPI.Models.Mapper.AccountsMapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ApprenticeWebAPI.Models.Mapper.AccountsMapper.MapToAccountResponseDto(ApprenticeWebAPI.Models.Entity.AccountsEntity)">
+            <summary>
+            To acccount response dto
+            </summary>
+            <param name="dataIn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Models.Mapper.AccountsMapper.MapToAccountsEntity(ApprenticeWebAPI.Models.Dto.AccountRequestDto)">
+            <summary>
+            To account entity
+            </summary>
+            <param name="dataIn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApprenticeWebAPI.Models.Mapper.AccountsMapper.MapToAccountResponseDtoList(System.Collections.Generic.List{ApprenticeWebAPI.Models.Entity.AccountsEntity})">
+            <summary>
+            To account response dto list
+            </summary>
+            <param name="dataIn"></param>
+            <returns></returns>
         </member>
         <member name="T:ApprenticeWebAPI.Program">
             <summary>

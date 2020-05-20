@@ -11,8 +11,8 @@ namespace ApprenticeWebAPI.DataAccessLayer.Interfaces
         /// <summary>
         /// Method for creating an account.
         /// </summary>
-        /// <param name="entity">The accounts first name.</param>
-        /// <returns>The Id of the new account.</returns>
+        /// <param name="entity">An object containing the accounts first name, surnam, title and email.</param>
+        /// <returns>The the new account.</returns>
         AccountsEntity CreateAccount(AccountsEntity entity);
 
         /// <summary>

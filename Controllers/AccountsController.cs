@@ -1,5 +1,7 @@
 ﻿using ApprenticeWebAPI.ApplicationLayer.Interfaces;
 using ApprenticeWebAPI.Models.Dto;
+using ApprenticeWebAPI.Models.Entity;
+using ApprenticeWebAPI.Models.Mapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +44,8 @@ namespace ApprenticeWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(AccountResponseDto))]
         public ActionResult CreateAccount([FromBody]AccountRequestDto accountRequestDto)
         {
-            var response = _accountsLogic.CreateAccount(accountRequestDto);
+            var accountsEntity = accountRequestDto.MapToAccountsEntity();
+            var response = _accountsLogic.CreateAccount(accountsEntity).MapToAccountResponseDto();
             return StatusCode((int)HttpStatusCode.Created, response);
         }
 
@@ -56,8 +59,8 @@ namespace ApprenticeWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IList<AccountResponseDto>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(IList<AccountResponseDto>))]
         public ActionResult RetrieveAccounts()
-        {
-            var response = _accountsLogic.RetrieveAccounts();
+        {            
+            var response = _accountsLogic.RetrieveAccounts().MapToAccountResponseDtoList();
             return StatusCode(response.Count == 0 ? (int)HttpStatusCode.NoContent : (int)HttpStatusCode.OK, response);
         }        
 
@@ -73,7 +76,7 @@ namespace ApprenticeWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(AccountResponseDto))]
         public ActionResult RetrieveAccount(int accountId)
         {
-            var response = _accountsLogic.RetrieveAccount(accountId);
+            var response = _accountsLogic.RetrieveAccount(accountId).MapToAccountResponseDto();
             return StatusCode(response == default(AccountResponseDto) ? (int)HttpStatusCode.NotFound : (int)HttpStatusCode.OK, response);
         }
 
@@ -90,7 +93,7 @@ namespace ApprenticeWebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(AccountResponseDto))]
         public ActionResult UpdateAccount(int accountId, [FromBody]JsonPatchDocument<AccountRequestDto> patchRequest)
         {
-            var response = _accountsLogic.UpdateAccount(accountId, patchRequest);
+            var response = _accountsLogic.UpdateAccount(accountId, patchRequest).MapToAccountResponseDto();
             return StatusCode(response == default(AccountResponseDto) ? (int)HttpStatusCode.NotFound : (int)HttpStatusCode.OK, response);
         }
 
