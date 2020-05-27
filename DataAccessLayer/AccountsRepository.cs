@@ -13,16 +13,9 @@ namespace ApprenticeWebAPI.DataAccessLayer
     /// Class for the account repository implementation.
     /// </summary>
     public class AccountsRepository : IAccountsRepository
-    {
-        /// <summary>
-        /// IDataHelper interface.
-        /// </summary>
+    {        
         private readonly IDataHelper _dataHelper;
-
-        /// <summary>
-        /// The configuration
-        /// </summary>
-        private IConfiguration Configuration { get; }
+        private readonly IConfiguration _configuration;
 
         /// <summary>
         /// Contructor.
@@ -32,14 +25,14 @@ namespace ApprenticeWebAPI.DataAccessLayer
         public AccountsRepository(IDataHelper dataHelper, IConfiguration configuration)
         {
             _dataHelper = dataHelper;
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
+        
         /// <inheritdoc />
         public AccountsEntity CreateAccount(AccountsEntity entity)
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
-                _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
+                _dataHelper.BindDb(_configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.CREATE_ACCOUNT),
                 _dataHelper.BindParameters(new Dictionary<string, object>
                 {
@@ -54,16 +47,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
             if (dtAccounts.Rows.Count == 1)
             {
                 DataRow drAccount = dtAccounts.Rows[0];
-                account = new AccountsEntity
-                {
-                    AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
-                    FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
-                    Surname = drAccount.Field<string>(Columns.SURNAME),
-                    Title = drAccount.Field<string>(Columns.TITLE),
-                    Email = drAccount.Field<string>(Columns.EMAIL),
-                    DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
-                    DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
-                };
+                account = rowToEntity(drAccount);
             }
 
             return account;
@@ -73,23 +57,14 @@ namespace ApprenticeWebAPI.DataAccessLayer
         public List<AccountsEntity> GetAccounts()
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
-                _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
+                _dataHelper.BindDb(_configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.GET_ACCOUNTS));
 
             List<AccountsEntity> accounts = new List<AccountsEntity>();
 
             foreach (DataRow drAccount in dtAccounts.Rows)
             {
-                accounts.Add(new AccountsEntity
-                {
-                    AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
-                    FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
-                    Surname = drAccount.Field<string>(Columns.SURNAME),
-                    Title = drAccount.Field<string>(Columns.TITLE),
-                    Email = drAccount.Field<string>(Columns.EMAIL),
-                    DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
-                    DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
-                });
+                accounts.Add(rowToEntity(drAccount));
             }
 
             return accounts;
@@ -99,7 +74,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         public AccountsEntity GetAccountById(int accountId)
         {
             DataTable dtAccounts = _dataHelper.Execute<DataTable>(
-                _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
+                _dataHelper.BindDb(_configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.GET_ACCOUNT_BY_ID),
                 _dataHelper.BindParameters(new Dictionary<string, object>
                 {
@@ -111,16 +86,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
             if (dtAccounts.Rows.Count == 1)
             {
                 DataRow drAccount = dtAccounts.Rows[0];
-                account = new AccountsEntity
-                {
-                    AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
-                    FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
-                    Surname = drAccount.Field<string>(Columns.SURNAME),
-                    Title = drAccount.Field<string>(Columns.TITLE),
-                    Email = drAccount.Field<string>(Columns.EMAIL),
-                    DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
-                    DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
-                };
+                account = rowToEntity(drAccount);
             }
 
             return account;
@@ -130,7 +96,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         public void UpdateAccount(int accountId, string firstName = null, string surname = null, string title = null, string email = null)
         {
             _dataHelper.Execute(
-                _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
+                _dataHelper.BindDb(_configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.UPDATE_ACCOUNT),
                 _dataHelper.BindParameters(new Dictionary<string, object>
                 {
@@ -146,7 +112,7 @@ namespace ApprenticeWebAPI.DataAccessLayer
         public void DeleteAccount(int accountId)
         {
             _dataHelper.Execute(
-                _dataHelper.BindDb(Configuration["ConnectionStrings:DefaultConnection"]),
+                _dataHelper.BindDb(_configuration["ConnectionStrings:DefaultConnection"]),
                 _dataHelper.StoredProc(StoredProcedures.DELETE_ACCOUNT),
                 _dataHelper.BindParameters(new Dictionary<string, object>
                 {
@@ -178,6 +144,21 @@ namespace ApprenticeWebAPI.DataAccessLayer
             public const string EMAIL = "Email";
             public const string DATE_CREATED = "DateCreated";
             public const string DATE_LAST_UPDATED = "DateLastUpdated";
+        }
+
+        private AccountsEntity rowToEntity(DataRow drAccount)
+        {
+
+            return new AccountsEntity
+            {
+                AccountId = drAccount.Field<int>(Columns.ACCOUNT_ID),
+                FirstName = drAccount.Field<string>(Columns.FIRST_NAME),
+                Surname = drAccount.Field<string>(Columns.SURNAME),
+                Title = drAccount.Field<string>(Columns.TITLE),
+                Email = drAccount.Field<string>(Columns.EMAIL),
+                DateCreated = drAccount.Field<DateTime>(Columns.DATE_CREATED),
+                DateLastUpdated = drAccount.Field<DateTime>(Columns.DATE_LAST_UPDATED)
+            };
         }
 
         #endregion Private Methods

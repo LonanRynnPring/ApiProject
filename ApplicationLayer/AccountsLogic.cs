@@ -19,10 +19,6 @@ namespace ApprenticeWebAPI.ApplicationLayer
     /// </summary>
     public class AccountsLogic : IAccountsLogic
     {
-
-        /// <summary>
-        /// Account repository interface.
-        /// </summary>
         private readonly IAccountsRepository _accountsRepository;
         
         /// <summary>

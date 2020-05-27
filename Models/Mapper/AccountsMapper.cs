@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ApprenticeWebAPI.Models.Mapper
 {
     /// <summary>
-    /// 
+    /// A class to map to and from account request dtos, account response dtos and account entities
     /// </summary>
     public static class AccountsMapper
     {
@@ -16,8 +16,8 @@ namespace ApprenticeWebAPI.Models.Mapper
         /// <summary>
         /// To acccount response dto
         /// </summary>
-        /// <param name="dataIn"></param>
-        /// <returns></returns>
+        /// <param name="dataIn">takes an accounts entity</param>
+        /// <returns>returns an account response dto</returns>
         public static AccountResponseDto MapToAccountResponseDto(this AccountsEntity dataIn)
         {
             return new AccountResponseDto
@@ -35,8 +35,8 @@ namespace ApprenticeWebAPI.Models.Mapper
         /// <summary>
         /// To account entity
         /// </summary>
-        /// <param name="dataIn"></param>
-        /// <returns></returns>
+        /// <param name="dataIn">takes an account request dto</param>
+        /// <returns>returns an account entity</returns>
         public static AccountsEntity MapToAccountsEntity(this AccountRequestDto dataIn)
         {
             return new AccountsEntity
@@ -51,8 +51,8 @@ namespace ApprenticeWebAPI.Models.Mapper
         /// <summary>
         /// To account response dto list
         /// </summary>
-        /// <param name="dataIn"></param>
-        /// <returns></returns>
+        /// <param name="dataIn">takes in a list of account entities</param>
+        /// <returns>returns a list of account response dtos</returns>
         public static List<AccountResponseDto> MapToAccountResponseDtoList(this List<AccountsEntity> dataIn)
         {
             var account = new List<AccountResponseDto>();
