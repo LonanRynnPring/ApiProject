@@ -16,33 +16,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Apprentice Database\**" />
     <Compile Remove="ApprenticeDatabase\**" />
     <Compile Remove="ApprenticeIntegrationTests\**" />
-    <Compile Remove="GuiTests\**" />
-    <Compile Remove="UnitTestProject1\**" />
-    <Content Remove="Apprentice Database\**" />
     <Content Remove="ApprenticeDatabase\**" />
     <Content Remove="ApprenticeIntegrationTests\**" />
-    <Content Remove="GuiTests\**" />
-    <Content Remove="UnitTestProject1\**" />
-    <EmbeddedResource Remove="Apprentice Database\**" />
     <EmbeddedResource Remove="ApprenticeDatabase\**" />
     <EmbeddedResource Remove="ApprenticeIntegrationTests\**" />
-    <EmbeddedResource Remove="GuiTests\**" />
-    <EmbeddedResource Remove="UnitTestProject1\**" />
-    <None Remove="Apprentice Database\**" />
     <None Remove="ApprenticeDatabase\**" />
     <None Remove="ApprenticeIntegrationTests\**" />
-    <None Remove="GuiTests\**" />
-    <None Remove="UnitTestProject1\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
-    <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
