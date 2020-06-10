@@ -2,6 +2,8 @@
   
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>a405a7ee-d2d5-419a-8671-ed79eec7b853</UserSecretsId>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,9 +17,25 @@
 
   <ItemGroup>
     <Compile Remove="Apprentice Database\**" />
+    <Compile Remove="ApprenticeDatabase\**" />
+    <Compile Remove="ApprenticeIntegrationTests\**" />
+    <Compile Remove="GuiTests\**" />
+    <Compile Remove="UnitTestProject1\**" />
     <Content Remove="Apprentice Database\**" />
+    <Content Remove="ApprenticeDatabase\**" />
+    <Content Remove="ApprenticeIntegrationTests\**" />
+    <Content Remove="GuiTests\**" />
+    <Content Remove="UnitTestProject1\**" />
     <EmbeddedResource Remove="Apprentice Database\**" />
+    <EmbeddedResource Remove="ApprenticeDatabase\**" />
+    <EmbeddedResource Remove="ApprenticeIntegrationTests\**" />
+    <EmbeddedResource Remove="GuiTests\**" />
+    <EmbeddedResource Remove="UnitTestProject1\**" />
     <None Remove="Apprentice Database\**" />
+    <None Remove="ApprenticeDatabase\**" />
+    <None Remove="ApprenticeIntegrationTests\**" />
+    <None Remove="GuiTests\**" />
+    <None Remove="UnitTestProject1\**" />
   </ItemGroup>
 
   <ItemGroup>
