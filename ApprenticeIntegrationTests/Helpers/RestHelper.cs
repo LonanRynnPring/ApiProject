@@ -4,18 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Web.Mvc;
 
 namespace ApprenticeIntegrationTests.Helpers
 {
-    public enum Verb
-    {
-        POST,
-        GET,
-        PUT,
-        PATCH,
-        DELETE
-    }
-
     public class RestHelper
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(RestHelper));
@@ -24,16 +16,20 @@ namespace ApprenticeIntegrationTests.Helpers
         public static WebHeaderCollection ResponseHeaders { get; set; }
 
         #region publicMethods
-        public static WebRequest CreateRequest(string endPoint, String resource, Dictionary<string, string> parameters, Verb method, Dictionary<string, string> headers, string contentType, string data, bool allowAutoRedirect = true)
+        public static WebRequest CreateRequest(
+            string endPoint, 
+            string resource, 
+            Dictionary<string, string> parameters, 
+            HttpVerbs method, 
+            Dictionary<string, string> headers, 
+            string contentType, string data)
         {
             WebRequest request = null;
             try
             {
-                var requestUriString = String.Concat(endPoint, resource, GetParametersString(parameters));
+                var requestUriString = string.Concat(endPoint, resource, GetParametersString(parameters));
                 log.Debug("Request URI string: " + requestUriString);
                 request = WebRequest.Create(requestUriString);
-
-                ((HttpWebRequest)request).AllowAutoRedirect = allowAutoRedirect;
 
                 request.Method = method.ToString();
                 log.Debug("REST verb: " + request.Method);
@@ -41,14 +37,13 @@ namespace ApprenticeIntegrationTests.Helpers
                 request.ContentType = contentType;
                 log.Debug("REST content type: " + request.ContentType);
 
-                //handle headers
                 if (headers != null)
                 {
                     log.Debug("REST headers: ");
                     foreach (var header in headers)
                     {
                         request.Headers.Add(header.Key, header.Value);
-                        log.Debug(String.Format("Added header key [{0}] with value [{1}]", header.Key, header.Value));
+                        log.Debug(string.Format("Added header key [{0}] with value [{1}]", header.Key, header.Value));
                     }
                 }
 
@@ -81,7 +76,6 @@ namespace ApprenticeIntegrationTests.Helpers
 
         private static string GetParametersString(Dictionary<string, string> parameters)
         {
-            //handle parameters
             if (parameters != null && parameters.Count > 0)
             {
                 log.Debug("REST parameters: ");
@@ -103,7 +97,7 @@ namespace ApprenticeIntegrationTests.Helpers
                 return query.ToString();
             }
             else
-                return String.Empty;
+                return string.Empty;
         }
 
         public static string GetResponse(WebRequest request)
@@ -141,7 +135,7 @@ namespace ApprenticeIntegrationTests.Helpers
                         }
                     }
                 }
-                var response = ((HttpWebResponse)webResponse);
+                var response = (HttpWebResponse)webResponse;
                 ResponseStatusCode = response.StatusCode;
                 ResponseHeaders = response.Headers;
 
@@ -155,11 +149,6 @@ namespace ApprenticeIntegrationTests.Helpers
 
             return responseString;
         }
-
-        #endregion
-
-        #region privateMethods
-
 
         #endregion
     }

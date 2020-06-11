@@ -1,18 +1,39 @@
-[Bb]in*/
-[Dd]ebug*/
-[Rr]elease*/
-[Pp]ackages*/
-.vs/*
-*.user
-*.cache
+*.swp
+*.*~
+project.lock.json
+.DS_Store
+*.pyc
+nupkg/
+
+# Visual Studio Code
+.vscode
+
+# Rider
+.idea
+
+# User-specific files
 *.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
 *.dbmdl
-*jfm
-*.ini
-*_BACKUP_*.*
-*_BASE_*.*
-*_LOCAL_*.*
-*_REMOTE_*.*
-*.orig
-*.slm
-*/obj/
+*.jfm

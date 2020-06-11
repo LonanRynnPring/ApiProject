@@ -2,6 +2,8 @@
   
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>a405a7ee-d2d5-419a-8671-ed79eec7b853</UserSecretsId>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,17 +16,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Apprentice Database\**" />
-    <Content Remove="Apprentice Database\**" />
-    <EmbeddedResource Remove="Apprentice Database\**" />
-    <None Remove="Apprentice Database\**" />
+    <Compile Remove="ApprenticeDatabase\**" />
+    <Compile Remove="ApprenticeIntegrationTests\**" />
+    <Content Remove="ApprenticeDatabase\**" />
+    <Content Remove="ApprenticeIntegrationTests\**" />
+    <EmbeddedResource Remove="ApprenticeDatabase\**" />
+    <EmbeddedResource Remove="ApprenticeIntegrationTests\**" />
+    <None Remove="ApprenticeDatabase\**" />
+    <None Remove="ApprenticeIntegrationTests\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
-    <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>
