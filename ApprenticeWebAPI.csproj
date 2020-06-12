@@ -2,6 +2,8 @@
   
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>a405a7ee-d2d5-419a-8671-ed79eec7b853</UserSecretsId>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,20 +12,22 @@
     <WarningsAsErrors />
     <OutputPath>bin\</OutputPath>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Apprentice Database\**" />
     <Compile Remove="ApprenticeDatabase\**" />
-    <Content Remove="Apprentice Database\**" />
+    <Compile Remove="ApprenticeIntegrationTests\**" />
     <Content Remove="ApprenticeDatabase\**" />
-    <EmbeddedResource Remove="Apprentice Database\**" />
+    <Content Remove="ApprenticeIntegrationTests\**" />
     <EmbeddedResource Remove="ApprenticeDatabase\**" />
-    <None Remove="Apprentice Database\**" />
+    <EmbeddedResource Remove="ApprenticeIntegrationTests\**" />
     <None Remove="ApprenticeDatabase\**" />
+    <None Remove="ApprenticeIntegrationTests\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
